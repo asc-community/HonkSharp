@@ -6,20 +6,14 @@ using System.Text;
 
 namespace DeclarativeCSharp.Functional
 {
-
 <# const int COUNT = 16; #>
-
 <# for (var i = 2; i <= COUNT; i++) { #>
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> <# for (var t = 2; t <= i; t++) { #> where T<#= t #> : unmanaged<# } #>
-
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
 <# for (var t = 1; t <= i; t++) { #>
-        [FieldOffset(4)]
         private readonly T<#= t #> field<#= t #>;
 <# } #>
 

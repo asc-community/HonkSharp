@@ -6,18 +6,12 @@ using System.Text;
 
 namespace DeclarativeCSharp.Functional
 {
-
-
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU2<T1, T2>  where T2 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU2<T1, T2>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, TCapture capture)
@@ -50,18 +44,13 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU3<T1, T2, T3>  where T2 : unmanaged where T3 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU3<T1, T2, T3>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, TCapture capture)
@@ -106,20 +95,14 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU4<T1, T2, T3, T4>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU4<T1, T2, T3, T4>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, TCapture capture)
@@ -178,22 +161,15 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU5<T1, T2, T3, T4, T5>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU5<T1, T2, T3, T4, T5>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, TCapture capture)
@@ -268,24 +244,16 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU6<T1, T2, T3, T4, T5, T6>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU6<T1, T2, T3, T4, T5, T6>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, TCapture capture)
@@ -378,26 +346,17 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU7<T1, T2, T3, T4, T5, T6, T7>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU7<T1, T2, T3, T4, T5, T6, T7>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, TCapture capture)
@@ -510,28 +469,18 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU8<T1, T2, T3, T4, T5, T6, T7, T8>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU8<T1, T2, T3, T4, T5, T6, T7, T8>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, TCapture capture)
@@ -666,30 +615,19 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU9<T1, T2, T3, T4, T5, T6, T7, T8, T9>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU9<T1, T2, T3, T4, T5, T6, T7, T8, T9>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, TCapture capture)
@@ -848,32 +786,20 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, TCapture capture)
@@ -1058,34 +984,21 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, TCapture capture)
@@ -1298,36 +1211,22 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
-        [FieldOffset(4)]
         private readonly T12 field12;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, Func<T12, TCapture, TOut> case12, TCapture capture)
@@ -1570,38 +1469,23 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
-        [FieldOffset(4)]
         private readonly T12 field12;
-        [FieldOffset(4)]
         private readonly T13 field13;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, Func<T12, TCapture, TOut> case12, Func<T13, TCapture, TOut> case13, TCapture capture)
@@ -1876,40 +1760,24 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
-        [FieldOffset(4)]
         private readonly T12 field12;
-        [FieldOffset(4)]
         private readonly T13 field13;
-        [FieldOffset(4)]
         private readonly T14 field14;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, Func<T12, TCapture, TOut> case12, Func<T13, TCapture, TOut> case13, Func<T14, TCapture, TOut> case14, TCapture capture)
@@ -2218,42 +2086,25 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged where T15 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
-        [FieldOffset(4)]
         private readonly T12 field12;
-        [FieldOffset(4)]
         private readonly T13 field13;
-        [FieldOffset(4)]
         private readonly T14 field14;
-        [FieldOffset(4)]
         private readonly T15 field15;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, Func<T12, TCapture, TOut> case12, Func<T13, TCapture, TOut> case13, Func<T14, TCapture, TOut> case14, Func<T15, TCapture, TOut> case15, TCapture capture)
@@ -2598,44 +2449,26 @@ namespace DeclarativeCSharp.Functional
         }
     }
 
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged where T15 : unmanaged where T16 : unmanaged
+    [StructLayout(LayoutKind.Auto)]
+    public struct EitherU16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>
     {
-        [FieldOffset(0)]
         private readonly byte index;
 
-        [FieldOffset(4)]
         private readonly T1 field1;
-        [FieldOffset(4)]
         private readonly T2 field2;
-        [FieldOffset(4)]
         private readonly T3 field3;
-        [FieldOffset(4)]
         private readonly T4 field4;
-        [FieldOffset(4)]
         private readonly T5 field5;
-        [FieldOffset(4)]
         private readonly T6 field6;
-        [FieldOffset(4)]
         private readonly T7 field7;
-        [FieldOffset(4)]
         private readonly T8 field8;
-        [FieldOffset(4)]
         private readonly T9 field9;
-        [FieldOffset(4)]
         private readonly T10 field10;
-        [FieldOffset(4)]
         private readonly T11 field11;
-        [FieldOffset(4)]
         private readonly T12 field12;
-        [FieldOffset(4)]
         private readonly T13 field13;
-        [FieldOffset(4)]
         private readonly T14 field14;
-        [FieldOffset(4)]
         private readonly T15 field15;
-        [FieldOffset(4)]
         private readonly T16 field16;
 
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1, Func<T2, TCapture, TOut> case2, Func<T3, TCapture, TOut> case3, Func<T4, TCapture, TOut> case4, Func<T5, TCapture, TOut> case5, Func<T6, TCapture, TOut> case6, Func<T7, TCapture, TOut> case7, Func<T8, TCapture, TOut> case8, Func<T9, TCapture, TOut> case9, Func<T10, TCapture, TOut> case10, Func<T11, TCapture, TOut> case11, Func<T12, TCapture, TOut> case12, Func<T13, TCapture, TOut> case13, Func<T14, TCapture, TOut> case14, Func<T15, TCapture, TOut> case15, Func<T16, TCapture, TOut> case16, TCapture capture)
