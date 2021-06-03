@@ -1,18 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using DeclarativeCSharp.Fluency;
 using DeclarativeCSharp.Functional;
 
-// it doesn't work :(((
+IList<int> il = new List<int> { 4 };
 
-var u = new EitherU4<int, bool, uint, ushort>(4u);
-
-Console.WriteLine(
-    u.Switch(
-        i => "it's int",
-        b => "it's bool",
-        ui => "it's uint" + ui,
-        us => "it's short"
-    )
-);
-
-
+il.Downcast<IList<int>, List<int>>()[0] = 5;
