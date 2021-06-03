@@ -23,35 +23,15 @@ namespace DeclarativeCSharp.Laziness
     /// <typeparam name="T">
     /// The type to store inside
     /// </typeparam>
-    public struct FieldCacheA<TThis, T> : IEquatable<FieldCacheA<TThis, T>> where TThis : class
+    public struct FieldCacheA<T> : IEquatable<FieldCacheA<T>>
     {
         private T? value;
         private object? holder;
-        private readonly Func<TThis, T> factory;
-
-        /// <summary>
-        /// Loads the static factory into the field cache on creation.
-        /// It is the preferred way and might give a performance boost
-        /// from 2ns to 0.5ns (so that GetValue will be as fast as Lazy.Value).
-        /// </summary>
-        /// <param name="factory">
-        /// The only argument of the factory is the object passed into GetValue method.
-        /// Unlike Lazy, where you are supposed to catch variables from outside, here
-        /// you need to pass your reference object (usually, you want to pass the holder,
-        /// that is, "this) and then, in the lambda itself, you can address its fields
-        /// without limitations.
-        /// </param>
-        public FieldCacheA(Func<TThis, T> factory)
-        {
-            holder = null;
-            value = default;
-            this.factory = factory;
-        }
 
         /// <summary>
         /// So that when records get compared, this field will not affect the result
         /// </summary>
-        public bool Equals(FieldCacheA<TThis, T> _)
+        public bool Equals(FieldCacheA<T> _)
             => true;
 
         /// <summary>
@@ -66,7 +46,7 @@ namespace DeclarativeCSharp.Laziness
         public override int GetHashCode() => 0;
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        private T CreateValue(TThis @this)
+        private T CreateValue<TThis>(Func<TThis, T> factory, TThis @this) where TThis : class
         {
             if (!ReferenceEquals(@this, holder))
                 lock (@this)
@@ -91,12 +71,12 @@ namespace DeclarativeCSharp.Laziness
         /// </param>
         /// <returns>The value returned by factory</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public T GetValue(TThis @this)
+        public T GetValue<TThis>(Func<TThis, T> factory, TThis @this) where TThis : class
         {
             if (ReferenceEquals(@this, holder))
                 return value!;
 
-            return CreateValue(@this);
+            return CreateValue(factory, @this);
         }
     }
 }

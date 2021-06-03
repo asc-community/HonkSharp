@@ -7,11 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Functional\EitherU.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Functional\EitherU.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EitherU.cs</LastGenOutput>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="PerformanceExtensions\Linq\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Functional\EitherU.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EitherU.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

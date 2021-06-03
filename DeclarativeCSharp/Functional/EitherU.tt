@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace DeclarativeCSharp.Functional
+{
+
+<# const int COUNT = 16; #>
+
+<# for (var i = 2; i <= COUNT; i++) { #>
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> where T1 : unmanaged where T2 : unmanaged
+    {
+        [FieldOffset(0)]
+        private readonly byte index;
+
+<# for (var t = 1; t <= i; t++) { #>
+        [FieldOffset(4)]
+        private readonly T<#= t #> field<#= t #>;
+<# } #>
+
+        public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TCapture, TOut> case<#= t #><# } #>, TCapture capture)
+            => index switch
+            {
+                <# for (var t = 1; t <= i  - 1; t++) { #>
+<#= t #> => case<#= t #>(field<#= t #>, capture),
+                <# } #>
+_ => case<#= i #>(field<#= i #>, capture)
+            };
+
+<# for (var t = 1; t <= i; t++) { #>
+        public EitherU<#= i #>(T<#= t #> value)
+        {
+<# for (var s = 1; s <= i; s++) { #>
+            Unsafe.SkipInit(out field<#= s #>);
+<# } #>
+            field<#= t #> = value;
+            index = <#= t #>;
+        }
+<# } #>
+    }
+
+<# } #>
+
+}
