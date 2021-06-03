@@ -12,7 +12,8 @@ namespace DeclarativeCSharp.Functional
 <# for (var i = 2; i <= COUNT; i++) { #>
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> <# for (var t = 2; t <= i; t++) { #> where T<#= t #> : unmanaged<# } #>
+
     {
         [FieldOffset(0)]
         private readonly byte index;

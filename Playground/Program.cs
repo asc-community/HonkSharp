@@ -3,7 +3,9 @@ using DeclarativeCSharp.Functional;
 
 // it doesn't work :(((
 
-var u = new EitherU4<int, bool, uint, ushort>(4u);
+//var u = new EitherU4<int, bool, uint, ushort>(4u);
+
+/*
 Console.WriteLine(
     u.Switch(
         i => "it's int",
@@ -11,4 +13,10 @@ Console.WriteLine(
         ui => "it's uint",
         us => "it's short"
     )
-);
+);*/
+
+
+unsafe
+{
+    Console.WriteLine(sizeof(EitherU4<int, bool, uint, ushort>));
+}

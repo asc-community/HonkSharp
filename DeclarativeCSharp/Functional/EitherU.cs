@@ -10,7 +10,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU2<T1, T2> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU2<T1, T2>  where T2 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -52,7 +52,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU3<T1, T2, T3> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU3<T1, T2, T3>  where T2 : unmanaged where T3 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -108,7 +108,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU4<T1, T2, T3, T4> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU4<T1, T2, T3, T4>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -180,7 +180,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU5<T1, T2, T3, T4, T5> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU5<T1, T2, T3, T4, T5>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -270,7 +270,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU6<T1, T2, T3, T4, T5, T6> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU6<T1, T2, T3, T4, T5, T6>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -380,7 +380,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU7<T1, T2, T3, T4, T5, T6, T7> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU7<T1, T2, T3, T4, T5, T6, T7>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -512,7 +512,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU8<T1, T2, T3, T4, T5, T6, T7, T8> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU8<T1, T2, T3, T4, T5, T6, T7, T8>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -668,7 +668,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU9<T1, T2, T3, T4, T5, T6, T7, T8, T9> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU9<T1, T2, T3, T4, T5, T6, T7, T8, T9>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -850,7 +850,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -1060,7 +1060,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -1300,7 +1300,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -1572,7 +1572,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -1878,7 +1878,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -2220,7 +2220,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged where T15 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
@@ -2600,7 +2600,7 @@ namespace DeclarativeCSharp.Functional
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct EitherU16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> where T1 : unmanaged where T2 : unmanaged
+    public struct EitherU16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>  where T2 : unmanaged where T3 : unmanaged where T4 : unmanaged where T5 : unmanaged where T6 : unmanaged where T7 : unmanaged where T8 : unmanaged where T9 : unmanaged where T10 : unmanaged where T11 : unmanaged where T12 : unmanaged where T13 : unmanaged where T14 : unmanaged where T15 : unmanaged where T16 : unmanaged
     {
         [FieldOffset(0)]
         private readonly byte index;
