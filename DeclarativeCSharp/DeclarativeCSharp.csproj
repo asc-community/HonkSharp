@@ -7,17 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Functional\EitherU.tt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Functional\EitherU.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EitherU.cs</LastGenOutput>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="PerformanceExtensions\Linq\" />
   </ItemGroup>
 
@@ -35,6 +24,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EitherU.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Functional\EitherU.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EitherU.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
