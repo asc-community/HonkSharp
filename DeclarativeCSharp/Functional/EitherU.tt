@@ -31,6 +31,15 @@ namespace DeclarativeCSharp.Functional
 _ => case<#= i #>(field<#= i #>, capture)
             };
 
+        public TOut Switch<TOut>(Func<T1, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TOut> case<#= t #><# } #>)
+            => index switch
+            {
+                <# for (var t = 1; t <= i  - 1; t++) { #>
+<#= t #> => case<#= t #>(field<#= t #>),
+                <# } #>
+_ => case<#= i #>(field<#= i #>)
+            };
+
 <# for (var t = 1; t <= i; t++) { #>
         public EitherU<#= i #>(T<#= t #> value)
         {

@@ -27,6 +27,13 @@ namespace DeclarativeCSharp.Functional
                 _ => case2(field2, capture)
             };
 
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2)
+            => index switch
+            {
+                1 => case1(field1),
+                _ => case2(field2)
+            };
+
         public EitherU2(T1 value)
         {
             Unsafe.SkipInit(out field1);
@@ -63,6 +70,14 @@ namespace DeclarativeCSharp.Functional
                 1 => case1(field1, capture),
                 2 => case2(field2, capture),
                 _ => case3(field3, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                _ => case3(field3)
             };
 
         public EitherU3(T1 value)
@@ -114,6 +129,15 @@ namespace DeclarativeCSharp.Functional
                 2 => case2(field2, capture),
                 3 => case3(field3, capture),
                 _ => case4(field4, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                _ => case4(field4)
             };
 
         public EitherU4(T1 value)
@@ -180,6 +204,16 @@ namespace DeclarativeCSharp.Functional
                 3 => case3(field3, capture),
                 4 => case4(field4, capture),
                 _ => case5(field5, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                _ => case5(field5)
             };
 
         public EitherU5(T1 value)
@@ -263,6 +297,17 @@ namespace DeclarativeCSharp.Functional
                 4 => case4(field4, capture),
                 5 => case5(field5, capture),
                 _ => case6(field6, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                _ => case6(field6)
             };
 
         public EitherU6(T1 value)
@@ -365,6 +410,18 @@ namespace DeclarativeCSharp.Functional
                 5 => case5(field5, capture),
                 6 => case6(field6, capture),
                 _ => case7(field7, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                _ => case7(field7)
             };
 
         public EitherU7(T1 value)
@@ -488,6 +545,19 @@ namespace DeclarativeCSharp.Functional
                 6 => case6(field6, capture),
                 7 => case7(field7, capture),
                 _ => case8(field8, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                _ => case8(field8)
             };
 
         public EitherU8(T1 value)
@@ -634,6 +704,20 @@ namespace DeclarativeCSharp.Functional
                 7 => case7(field7, capture),
                 8 => case8(field8, capture),
                 _ => case9(field9, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                _ => case9(field9)
             };
 
         public EitherU9(T1 value)
@@ -805,6 +889,21 @@ namespace DeclarativeCSharp.Functional
                 8 => case8(field8, capture),
                 9 => case9(field9, capture),
                 _ => case10(field10, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                _ => case10(field10)
             };
 
         public EitherU10(T1 value)
@@ -1003,6 +1102,22 @@ namespace DeclarativeCSharp.Functional
                 9 => case9(field9, capture),
                 10 => case10(field10, capture),
                 _ => case11(field11, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                _ => case11(field11)
             };
 
         public EitherU11(T1 value)
@@ -1230,6 +1345,23 @@ namespace DeclarativeCSharp.Functional
                 10 => case10(field10, capture),
                 11 => case11(field11, capture),
                 _ => case12(field12, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11, Func<T12, TOut> case12)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                11 => case11(field11),
+                _ => case12(field12)
             };
 
         public EitherU12(T1 value)
@@ -1488,6 +1620,24 @@ namespace DeclarativeCSharp.Functional
                 11 => case11(field11, capture),
                 12 => case12(field12, capture),
                 _ => case13(field13, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11, Func<T12, TOut> case12, Func<T13, TOut> case13)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                11 => case11(field11),
+                12 => case12(field12),
+                _ => case13(field13)
             };
 
         public EitherU13(T1 value)
@@ -1779,6 +1929,25 @@ namespace DeclarativeCSharp.Functional
                 12 => case12(field12, capture),
                 13 => case13(field13, capture),
                 _ => case14(field14, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11, Func<T12, TOut> case12, Func<T13, TOut> case13, Func<T14, TOut> case14)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                11 => case11(field11),
+                12 => case12(field12),
+                13 => case13(field13),
+                _ => case14(field14)
             };
 
         public EitherU14(T1 value)
@@ -2105,6 +2274,26 @@ namespace DeclarativeCSharp.Functional
                 13 => case13(field13, capture),
                 14 => case14(field14, capture),
                 _ => case15(field15, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11, Func<T12, TOut> case12, Func<T13, TOut> case13, Func<T14, TOut> case14, Func<T15, TOut> case15)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                11 => case11(field11),
+                12 => case12(field12),
+                13 => case13(field13),
+                14 => case14(field14),
+                _ => case15(field15)
             };
 
         public EitherU15(T1 value)
@@ -2468,6 +2657,27 @@ namespace DeclarativeCSharp.Functional
                 14 => case14(field14, capture),
                 15 => case15(field15, capture),
                 _ => case16(field16, capture)
+            };
+
+        public TOut Switch<TOut>(Func<T1, TOut> case1, Func<T2, TOut> case2, Func<T3, TOut> case3, Func<T4, TOut> case4, Func<T5, TOut> case5, Func<T6, TOut> case6, Func<T7, TOut> case7, Func<T8, TOut> case8, Func<T9, TOut> case9, Func<T10, TOut> case10, Func<T11, TOut> case11, Func<T12, TOut> case12, Func<T13, TOut> case13, Func<T14, TOut> case14, Func<T15, TOut> case15, Func<T16, TOut> case16)
+            => index switch
+            {
+                1 => case1(field1),
+                2 => case2(field2),
+                3 => case3(field3),
+                4 => case4(field4),
+                5 => case5(field5),
+                6 => case6(field6),
+                7 => case7(field7),
+                8 => case8(field8),
+                9 => case9(field9),
+                10 => case10(field10),
+                11 => case11(field11),
+                12 => case12(field12),
+                13 => case13(field13),
+                14 => case14(field14),
+                15 => case15(field15),
+                _ => case16(field16)
             };
 
         public EitherU16(T1 value)
