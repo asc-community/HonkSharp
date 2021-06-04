@@ -32,7 +32,7 @@ namespace DeclarativeCSharp.Fluency
             private TOut cache;
             private T inArg;
             private Func<T, TOut> factory;
-            public TOut Value => evaluated ? cache : cache.Let(out evaluated, true).Let(out cache, factory(inArg));
+            public TOut Value => evaluated ? cache : cache.Let(out evaluated, true).Let(out cache, factory(inArg)).ReplaceWith(cache);
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             public LazyEval(Func<T, TOut> factory, T inArg)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.

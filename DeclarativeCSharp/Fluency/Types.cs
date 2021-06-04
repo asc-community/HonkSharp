@@ -36,6 +36,8 @@ namespace DeclarativeCSharp.Fluency
         {
             if (typeof(T) == typeof(byte))
                 return byte.TryParse(s, out var res) ? new((T)(object)res) : Option<T>.Failure;
+            if (typeof(T) == typeof(int))
+                return int.TryParse(s, out var res) ? new((T)(object)res) : Option<T>.Failure;
             return Option<T>.Failure;
         }
 
@@ -73,5 +75,8 @@ namespace DeclarativeCSharp.Fluency
                 lambda(l);
             return @this;
         }
+
+        public static TOut ReplaceWith<T, TOut>(this T _, TOut newValue)
+            => newValue;
     }
 }
