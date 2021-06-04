@@ -6,4 +6,12 @@ using DeclarativeCSharp.Functional;
 
 IList<int> il = new List<int> { 4 };
 
-il.Downcast<IList<int>, List<int>>()[0] = 5;
+Console.WriteLine(
+    5
+    .Apply(a => a + 6)
+    .Apply(a => a * 2)
+    .Join(6)
+    .Apply((a, b) => a + b)
+    .NullIf(a => a < 0)
+    ?.Apply(a => Math.Sqrt(a))
+);
