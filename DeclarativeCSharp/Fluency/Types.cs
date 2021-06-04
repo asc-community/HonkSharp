@@ -39,8 +39,33 @@ namespace DeclarativeCSharp.Fluency
             return Option<T>.Failure;
         }
 
-        public static IEnumerable<int> AsRange(this (int inclusiveFrom, int inclusiveTo) @this)
-            => Enumerable.Range(@this.inclusiveFrom, @this.inclusiveTo - @this.inclusiveFrom + 1);
+        private static IEnumerable<int> InfiniteSequence(int start)
+        {
+            while (true)
+                yield return start++;
+        }
+
+        private static IEnumerable<int> InfiniteSequenceBackward(int start)
+        {
+            while (true)
+                yield return start--;
+        }
+
+        public static Option<IEnumerable<int>> AsRange(this Range @this)
+            => @this.Start
+                .Inject(@this.End)
+                .Let(out var failure, Option<IEnumerable<int>>.Failure)
+                .Inject(failure)
+                .Map((startEnd, failure) => 
+                    startEnd switch 
+                    {
+                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(0)),
+                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => new(InfiniteSequenceBackward(to)),
+                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(from)),
+                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to }) => new(Enumerable.Range(from, to)),
+                        _ => failure
+                    }
+                );
 
         public static IEnumerable<T> ExecuteForAll<T>(this IEnumerable<T> @this, Action<T> lambda)
         {

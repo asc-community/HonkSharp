@@ -4,8 +4,10 @@ using System.Runtime.InteropServices;
 using DeclarativeCSharp.Fluency;
 using DeclarativeCSharp.Functional;
 
-(1, 15)
+
+(..)
 .AsRange()
+.AssumeBest()
 .ExecuteForAll(_ => 
     Console.ReadLine()
     .Parse<byte>()
