@@ -4,15 +4,28 @@ using System.Runtime.InteropServices;
 using DeclarativeCSharp.Fluency;
 using DeclarativeCSharp.Functional;
 
+5
+.Execute(Console.WriteLine)
+.LetLazy(out var anotherNumber, _ => Console.ReadLine())
+.Inject(anotherNumber)
+.Map((a, num) => a switch
+{
+    > 0 => num.Value.Parse<int>().AssumeBest() * 2 + num.Value.ToString(),
+    _ => "43"
+})
+.Execute(Console.WriteLine);
 
-Console.ReadLine().Alias(out var input)
+/*Console.ReadLine().Alias(out var input)
 .Parse<int>()
 .Match(valid => $"Valid number! {valid}",
        () => "Oops, invalid!")
 .Inject(input)
 .Map((output, input) => $"Input: {input}\nOutput: {output}")
+.Execute(Console.WriteLine)
+.Execute(Console.WriteLine)
+.Map(a => a + "FJDSKFJKSLDF")
 .Execute(Console.WriteLine);
-
+*/
 
 /*
 var input = Console.ReadLine();

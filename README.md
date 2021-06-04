@@ -55,6 +55,21 @@ a
 .Inject()
 ```
 
+#### 6. LetLazy
+
+```cs
+a
+.LetLazy(out var big, _ => Console.ReadLine().Parse<int>().AssumeBest())
+.Inject(big)
+.Map((a, big) => a switch
+{
+    > 0 => 4,
+    3 => big
+    _ => big + a
+})
+.Execute(Console.WriteLine)
+```
+
 ## Examples
 
 Imperative C#:
