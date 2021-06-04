@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace DeclarativeCSharp.Functional
 {
-    public struct Success<T>
+    public struct Option<T>
     {
-        private readonly T value;
-        public Success(T value) => this.value = value;
-        public void Deconstruct(out T res) => res = value;
+        public T Value { get; }
+        public bool HasValue { get; }
+        public Option(T value) => (Value, HasValue) = (value, true);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        private Option(bool hasValue) => (Value, HasValue) = (default, hasValue);
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        public static Option<T> Failure = new(false);
     }
 }
