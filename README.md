@@ -70,13 +70,10 @@ Console.WriteLine($"Input: {input}\nOutput: {output}");
 
 Declarative C#:
 ```cs
-Console.ReadLine()
-.Alias(out var input)
+Console.ReadLine().Alias(out var input)
 .Parse<int>()
-.Match(
-    valid => $"Valid number! {valid}",
-    () => "Oops, invalid!"
-)
+.Match(valid => $"Valid number! {valid}",
+       () => "Oops, invalid!")
 .Inject(input)
 .Map((output, input) => $"Input: {input}\nOutput: {output}")
 .Execute(Console.WriteLine);
