@@ -156,7 +156,7 @@ Console.ReadLine().Alias(out var input)
 ```
 
 F# equivalent of imperative:
-```cs
+```fs
 open System
 let input = Console.ReadLine()
 let mutable output = Unchecked.defaultof<_>
@@ -169,7 +169,7 @@ printfn $"Input: {input}\nOutput: {output}"
 ```
 
 F# equivalent of declarative:
-```cs
+```fs
 open System
 Console.ReadLine() |> fun input ->
 (input |> Int32.TryParse
