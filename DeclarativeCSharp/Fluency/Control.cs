@@ -4,7 +4,7 @@ namespace DeclarativeCSharp.Fluency
 {
     public static class ControlExtensions
     {
-        public static TTo Map<TFrom, TTo>(this TFrom @this, Func<TFrom, TTo> transformation)
+        public static TTo Pipe<TFrom, TTo>(this TFrom @this, Func<TFrom, TTo> transformation)
             => transformation(@this);
 
         public delegate TReturn OneInOneOut<TIn, TOut, TReturn>(TIn arg, out TOut outArg);

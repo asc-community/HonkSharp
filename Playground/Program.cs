@@ -8,7 +8,7 @@ using DeclarativeCSharp.Functional;
 .Execute(Console.WriteLine)
 .LetLazy(out var anotherNumber, _ => Console.ReadLine())
 .Inject(anotherNumber)
-.Map((a, num) => a switch
+.Pipe((a, num) => a switch
 {
     > 0 => num.Value.Parse<int>().AssumeBest() * 2 + num.Value.ToString(),
     _ => "43"
@@ -20,10 +20,10 @@ using DeclarativeCSharp.Functional;
 .Match(valid => $"Valid number! {valid}",
        () => "Oops, invalid!")
 .Inject(input)
-.Map((output, input) => $"Input: {input}\nOutput: {output}")
+.Pipe((output, input) => $"Input: {input}\nOutput: {output}")
 .Execute(Console.WriteLine)
 .Execute(Console.WriteLine)
-.Map(a => a + "FJDSKFJKSLDF")
+.Pipe(a => a + "FJDSKFJKSLDF")
 .Execute(Console.WriteLine);
 */
 
