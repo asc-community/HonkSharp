@@ -7,35 +7,35 @@ using Xunit;
 
 namespace Tests
 {
-    public sealed class FieldCacheBTest
+    public sealed class FieldCacheATest
     {
         [Fact]
         public void TestSimple1()
-            => new FieldCacheB<FieldCacheBTest, int>(_ => 4)
+            => new FieldCacheA<int>()
                 .Alias(out var container)
                 .ReplaceWith(ref container)
-                .Pipe(c => c.GetValue(this))
+                .Pipe(c => c.GetValue(_ => 4, this))
                 .Should().Be(4)
                 .ReplaceWith(ref container)
-                .Pipe(c => c.GetValue(this))
+                .Pipe(c => c.GetValue(_ => 4, this))
                 .Should().Be(4);
 
 
         [Fact]
         public void TestSimpleString()
-            => new FieldCacheB<FieldCacheBTest, string>(_ => "ss")
+            => new FieldCacheA<string>()
                 .Alias(out var container)
                 .ReplaceWith(ref container)
-                .Pipe(a => a.GetValue(this))
+                .Pipe(a => a.GetValue(_ => "ss", this))
                 .Should().Be("ss")
                 .ReplaceWith(ref container)
-                .Pipe(a => a.GetValue(this))
+                .Pipe(a => a.GetValue(_ => "ss", this))
                 .Should().Be("ss");
 
         private record SomeTestRecord
         {
-            public ConcurrentDictionary<string, string> Dict => dict.GetValue(this);
-            private FieldCacheB<SomeTestRecord, ConcurrentDictionary<string, string>> dict = new(_ => new());
+            public ConcurrentDictionary<string, string> Dict => dict.GetValue(_ => new(), this);
+            private FieldCacheA<ConcurrentDictionary<string, string>> dict;
         }
 
         [Fact]
@@ -53,8 +53,8 @@ namespace Tests
 
         private record Person(string FirstName, string LastName)
         {
-            public string FullName => fullName.GetValue(this);
-            private FieldCacheB<Person, string> fullName = new(@this => @this.FirstName + " " + @this.LastName);
+            public string FullName => fullName.GetValue(new(@this => @this.FirstName + " " + @this.LastName), this);
+            private FieldCacheA<string> fullName;
         }
 
         [Fact]
@@ -91,8 +91,8 @@ namespace Tests
         
         private record SomeTestRecord_static
         {
-            public ConcurrentDictionary<string, string> Dict => dict.GetValue(this);
-            private FieldCacheB<SomeTestRecord_static, ConcurrentDictionary<string, string>> dict = new(_ => new());
+            public ConcurrentDictionary<string, string> Dict => dict.GetValue(_ => new ConcurrentDictionary<string, string>(), this);
+            private FieldCacheA<ConcurrentDictionary<string, string>> dict;
         }
 
         [Fact]
