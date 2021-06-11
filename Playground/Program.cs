@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 using DeclarativeCSharp.Fluency;
 using DeclarativeCSharp.Functional;
 
-A a = new B();
-
-Console.Write(a.Downcast<B>());
-
-class A {}
-
-class B : A{}
-
+Console.ReadLine()
+    .Dangerous()
+    .Try<FormatException, int>(int.Parse)
+    .Switch(
+        e => $"Exception occured! {e}",
+        i => $"Valid integer! {i}"
+    )
+    .Execute(Console.WriteLine);

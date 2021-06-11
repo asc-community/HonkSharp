@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using DeclarativeCSharp.Functional;
 
 namespace DeclarativeCSharp.Fluency
 {
@@ -135,5 +136,26 @@ namespace DeclarativeCSharp.Fluency
         /// </summary>
         public static ref TOut ReplaceWith<T, TOut>(this T _, ref TOut newValue)
             => ref newValue;
+
+        public readonly struct DangerousCode<T>
+        {
+            private readonly T tin;
+            public DangerousCode(T tin) => this.tin = tin; 
+            public Either2<TException, TOut> Try<TException, TOut>(Func<T, TOut> dangerousCode)
+                where TException : Exception
+            {
+                try
+                {
+                    return new(dangerousCode(tin));
+                }
+                catch (TException e)
+                {
+                    return new(e);
+                }
+            }
+        }
+
+        public static DangerousCode<T> Dangerous<T>(this T @this)
+            => new DangerousCode<T>(@this);
     }
 }
