@@ -83,7 +83,6 @@ namespace DeclarativeCSharp.Fluency
             return @this;
         }
 
-        public static TOut ReplaceWith<T, TOut>(this T _, TOut newValue)
-            => newValue;
+        
     }
 }
