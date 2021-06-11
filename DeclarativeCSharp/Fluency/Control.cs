@@ -6,9 +6,8 @@ namespace DeclarativeCSharp.Fluency
     {
         public static TTo Pipe<TFrom, TTo>(this TFrom @this, Func<TFrom, TTo> transformation)
             => transformation(@this);
-
-        public delegate TReturn OneInOneOut<TIn, TOut, TReturn>(TIn arg, out TOut outArg);
-        public static TTo Map<TFrom1, TFrom2, TTo>(this (TFrom1, TFrom2) @this, Func<TFrom1, TFrom2, TTo> transformation)
+        
+        public static TTo Pipe<TFrom1, TFrom2, TTo>(this (TFrom1, TFrom2) @this, Func<TFrom1, TFrom2, TTo> transformation)
             => transformation(@this.Item1, @this.Item2);
 
         public static (TThis Current, TNew Injected) Inject<TThis, TNew>(this TThis @this, TNew @new)
@@ -26,12 +25,12 @@ namespace DeclarativeCSharp.Fluency
                 .Inject(@this)
                 .Injected;
 
-        public struct LazyEval<T, TOut>
+        public sealed class LazyEval<T, TOut>
         {
             private bool evaluated;
             private TOut cache;
-            private T inArg;
-            private Func<T, TOut> factory;
+            private readonly T inArg;
+            private readonly Func<T, TOut> factory;
             public TOut Value => evaluated ? cache : cache.Let(out evaluated, true).Let(out cache, factory(inArg)).ReplaceWith(cache);
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             public LazyEval(Func<T, TOut> factory, T inArg)

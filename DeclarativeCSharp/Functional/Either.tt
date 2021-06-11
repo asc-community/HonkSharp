@@ -9,10 +9,9 @@ namespace DeclarativeCSharp.Functional
 <# const int COUNT = 16; #>
 <# for (var i = 2; i <= COUNT; i++) { #>
     [StructLayout(LayoutKind.Auto)]
-    public struct EitherU<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>>
+    public readonly struct Either<#= i #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>>
     {
         private readonly byte index;
-
 <# for (var t = 1; t <= i; t++) { #>
         private readonly T<#= t #> field<#= t #>;
 <# } #>
@@ -36,7 +35,7 @@ _ => case<#= i #>(field<#= i #>)
             };
 
 <# for (var t = 1; t <= i; t++) { #>
-        public EitherU<#= i #>(T<#= t #> value)
+        public Either<#= i #>(T<#= t #> value)
         {
 <# for (var s = 1; s <= i; s++) { #>
             Unsafe.SkipInit(out field<#= s #>);

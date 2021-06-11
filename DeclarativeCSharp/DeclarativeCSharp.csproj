@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="PerformanceExtensions\Linq\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="IndexRange" Version="1.0.0" />
     <PackageReference Include="IsExternalInit" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,17 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Functional\EitherU.cs">
+    <Compile Update="Functional\Either.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>EitherU.tt</DependentUpon>
+      <DependentUpon>Either.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Functional\EitherU.tt">
+    <None Update="Functional\Either.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EitherU.cs</LastGenOutput>
+      <LastGenOutput>Either.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

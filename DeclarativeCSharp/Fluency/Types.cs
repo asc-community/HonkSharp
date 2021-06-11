@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace DeclarativeCSharp.Fluency
 {
@@ -16,6 +16,13 @@ namespace DeclarativeCSharp.Fluency
             => option switch
             {
                 { HasValue: true } => option.Value,
+                _ => throw new WorstHappenedException()
+            };
+
+        public static T AssumeBest<T>(this T? type)
+            => type switch
+            {
+                { } valid => valid,
                 _ => throw new WorstHappenedException()
             };
 
@@ -58,7 +65,7 @@ namespace DeclarativeCSharp.Fluency
                 .Inject(@this.End)
                 .Let(out var failure, Option<IEnumerable<int>>.Failure)
                 .Inject(failure)
-                .Map((startEnd, failure) => 
+                .Pipe((startEnd, failure) => 
                     startEnd switch 
                     {
                         ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(0)),
