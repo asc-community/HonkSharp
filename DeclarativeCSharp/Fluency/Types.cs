@@ -82,7 +82,5 @@ namespace DeclarativeCSharp.Fluency
                 lambda(l);
             return @this;
         }
-
-        
     }
 }

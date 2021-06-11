@@ -61,7 +61,7 @@ namespace DeclarativeCSharp.Fluency
         /// Useful to avoid variable capturing.
         /// </summary>
         public static (TThis Current, TNew Injected) Inject<TThis, TNew>(this TThis @this, TNew @new)
-            => new(@this, @new);
+            => (@this, @new);
 
         /// <summary>
         /// Nullifies the given type in case the condition
@@ -80,7 +80,16 @@ namespace DeclarativeCSharp.Fluency
         /// <summary>
         /// Assigns arbitrary expression to a variable
         /// </summary>
-        public static T Let<T, TOut>(this T @this, out TOut alias, TOut value)
+        public static T Let<T, TOut>(this T @this, out TOut alias, TOut value) where TOut : class
+            => value
+                .Alias(out alias)
+                .Inject(@this)
+                .Injected;
+
+        /// <summary>
+        /// Assigns arbitrary expression to a variable
+        /// </summary>
+        public static T Let<T, TOut>(this T @this, out TOut alias, in TOut value)
             => value
                 .Alias(out alias)
                 .Inject(@this)
@@ -119,5 +128,12 @@ namespace DeclarativeCSharp.Fluency
         /// </summary>
         public static TOut ReplaceWith<T, TOut>(this T _, TOut newValue)
             => newValue;
+        
+        /// <summary>
+        /// Replaces the flow end
+        /// with the ref of given object by ref
+        /// </summary>
+        public static ref TOut ReplaceWith<T, TOut>(this T _, ref TOut newValue)
+            => ref newValue;
     }
 }
