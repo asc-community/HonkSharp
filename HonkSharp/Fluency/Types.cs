@@ -28,12 +28,6 @@ namespace DeclarativeCSharp.Fluency
                 _ => throw new WorstHappenedException()
             };
 
-        public static T Execute<T>(this T @this, Action<T> act)
-        {
-            act(@this);
-            return @this;
-        }
-
         public static Either<T, Failure> Parse<T>(this string s)
         {
             if (typeof(T) == typeof(byte))

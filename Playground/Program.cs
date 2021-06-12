@@ -4,12 +4,17 @@ using System.Runtime.InteropServices;
 using DeclarativeCSharp.Fluency;
 using DeclarativeCSharp.Functional;
 
+var a = new Either<int, string>(5);
 
-Console.ReadLine()
-    .Dangerous()
-    .Try<FormatException, int>(int.Parse)
-    .Switch(
-        result => $"Valid integer! {result}",
-        fail => $"Exception occured! {fail.Reason.Message}"
-    )
-    .Execute(Console.WriteLine);
+a.As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .As<int>().As<int>().As<int>().As<int>().As<int>()
+    .AssumeBest().Pipe(Console.WriteLine);

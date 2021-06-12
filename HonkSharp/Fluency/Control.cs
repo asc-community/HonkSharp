@@ -56,6 +56,13 @@ namespace DeclarativeCSharp.Fluency
         public static TTo Pipe<TFrom1, TFrom2, TTo>(this (TFrom1 Current, TFrom2 Injected) @this, Func<TFrom1, TFrom2, TTo> transformation)
             => transformation(@this.Item1, @this.Item2);
 
+        
+        public static T Pipe<T>(this T @this, Action<T> act)
+        {
+            act(@this);
+            return @this;
+        }
+        
         /// <summary>
         /// Injects an object as a second
         /// element of a tuple generated as a result.

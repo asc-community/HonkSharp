@@ -56,6 +56,34 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T2(Either<T1, T2> t)
             => t.index is 2 ? t.field2 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -125,6 +153,44 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T3(Either<T1, T2, T3> t)
             => t.index is 3 ? t.field3 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -214,6 +280,54 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T4(Either<T1, T2, T3, T4> t)
             => t.index is 4 ? t.field4 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -325,6 +439,64 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T5(Either<T1, T2, T3, T4, T5> t)
             => t.index is 5 ? t.field5 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -460,6 +632,74 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6> t)
             => t.index is 6 ? t.field6 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -621,6 +861,84 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7> t)
             => t.index is 7 ? t.field7 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -810,6 +1128,94 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
             => t.index is 8 ? t.field8 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -1029,6 +1435,104 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
             => t.index is 9 ? t.field9 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -1280,6 +1784,114 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
             => t.index is 10 ? t.field10 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -1565,6 +2177,124 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
             => t.index is 11 ? t.field11 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -1886,6 +2616,134 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
             => t.index is 12 ? t.field12 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T12))
+            {
+                if (index == 12)
+                {
+                    instance = (T)(object)field12;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -2245,6 +3103,144 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T13(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
             => t.index is 13 ? t.field13 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T12))
+            {
+                if (index == 12)
+                {
+                    instance = (T)(object)field12;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T13))
+            {
+                if (index == 13)
+                {
+                    instance = (T)(object)field13;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -2644,6 +3640,154 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T14(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
             => t.index is 14 ? t.field14 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T12))
+            {
+                if (index == 12)
+                {
+                    instance = (T)(object)field12;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T13))
+            {
+                if (index == 13)
+                {
+                    instance = (T)(object)field13;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T14))
+            {
+                if (index == 14)
+                {
+                    instance = (T)(object)field14;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -3085,6 +4229,164 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T15(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
             => t.index is 15 ? t.field15 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T12))
+            {
+                if (index == 12)
+                {
+                    instance = (T)(object)field12;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T13))
+            {
+                if (index == 13)
+                {
+                    instance = (T)(object)field13;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T14))
+            {
+                if (index == 14)
+                {
+                    instance = (T)(object)field14;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T15))
+            {
+                if (index == 15)
+                {
+                    instance = (T)(object)field15;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 
@@ -3570,6 +4872,174 @@ namespace DeclarativeCSharp.Functional
         public static explicit operator T16(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
             => t.index is 16 ? t.field16 : throw new InvalidCastException();
 
+        public bool Is<T>(out T instance)
+        {
+            if (typeof(T) == typeof(T1))
+            {
+                if (index == 1)
+                {
+                    instance = (T)(object)field1;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T2))
+            {
+                if (index == 2)
+                {
+                    instance = (T)(object)field2;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T3))
+            {
+                if (index == 3)
+                {
+                    instance = (T)(object)field3;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T4))
+            {
+                if (index == 4)
+                {
+                    instance = (T)(object)field4;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T5))
+            {
+                if (index == 5)
+                {
+                    instance = (T)(object)field5;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T6))
+            {
+                if (index == 6)
+                {
+                    instance = (T)(object)field6;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T7))
+            {
+                if (index == 7)
+                {
+                    instance = (T)(object)field7;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T8))
+            {
+                if (index == 8)
+                {
+                    instance = (T)(object)field8;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T9))
+            {
+                if (index == 9)
+                {
+                    instance = (T)(object)field9;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T10))
+            {
+                if (index == 10)
+                {
+                    instance = (T)(object)field10;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T11))
+            {
+                if (index == 11)
+                {
+                    instance = (T)(object)field11;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T12))
+            {
+                if (index == 12)
+                {
+                    instance = (T)(object)field12;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T13))
+            {
+                if (index == 13)
+                {
+                    instance = (T)(object)field13;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T14))
+            {
+                if (index == 14)
+                {
+                    instance = (T)(object)field14;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T15))
+            {
+                if (index == 15)
+                {
+                    instance = (T)(object)field15;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            if (typeof(T) == typeof(T16))
+            {
+                if (index == 16)
+                {
+                    instance = (T)(object)field16;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 
 }

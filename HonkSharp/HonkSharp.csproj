@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/WhiteBlackGoose/HonkSharp</RepositoryUrl>
     <RepositoryType>public</RepositoryType>
     <PackageReleaseNotes>First proof of concept version</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

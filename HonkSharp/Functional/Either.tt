@@ -57,6 +57,26 @@ _ => case<#= i #>(field<#= i #>)
             => t.index is <#= t #> ? t.field<#= t #> : throw new InvalidCastException();
 <# } #>
 
+        public bool Is<T>(out T instance)
+        {
+<# for (var t = 1; t <= i; t++) { #>
+            if (typeof(T) == typeof(T<#= t #>))
+            {
+                if (index == <#= t #>)
+                {
+                    instance = (T)(object)field<#= t #>;
+                    return true;
+                }
+                instance = default;
+                return false;
+            }
+<# } #>
+            instance = default;
+            return false;
+        }
+
+        public Either<T, Failure> As<T>()
+            => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 <# } #>
 
