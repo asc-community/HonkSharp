@@ -66,7 +66,7 @@ namespace Tests
         public void TestEqualityOneInitted()
             => new Person("John", "Ivanov")
                 .Alias(out var a)
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("John Ivanov")
                 .ReplaceWith(a)
                 .Should().Be(new Person("John", "Ivanov"));
@@ -75,11 +75,11 @@ namespace Tests
         public void TestEqualityBothInitted()
             => new Person("John", "Ivanov")
                 .Alias(out var a)
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("John Ivanov")
                 .ReplaceWith(new Person("John", "Ivanov"))
                 .Alias(out var b)
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("John Ivanov")
                 .ReplaceWith(b)
                 .Should().Be(a);
@@ -113,21 +113,21 @@ namespace Tests
             => new Person("John", "Smith")
                 .Alias(out var personJohnSmith)
                 .Let(out var personTonySmith, personJohnSmith with { FirstName = "Tony" })
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("John Smith")
                 .ReplaceWith(personTonySmith)
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("Tony Smith");
 
         [Fact]
         public void WithAlsoShouldWork2()
             => new Person("John", "Smith")
                 .Alias(out var personJohnSmith)
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("John Smith")
                 .ReplaceWith(personJohnSmith)
                 .Pipe(p => p with { FirstName = "Tony" })
-                .Pipe(p => p.FullName)
+                .FullName
                 .Should().Be("Tony Smith");
     }
 }

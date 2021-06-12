@@ -12,25 +12,20 @@ namespace DeclarativeCSharp.Fluency
     {
         public static bool Invert(this bool b) => !b;
 
-        public static T AssumeBest<T>(this Option<T> option)
-            => option switch
-            {
-                { HasValue: true } => option.Value,
-                _ => throw new WorstHappenedException()
-            };
-
+        public static T AssumeBest<T>(this Either<T, Failure> either)
+            => (T)either;
+        
+        public static T AssumeBest<T, TReason>(this Either<T, Failure<TReason>> either)
+            => either.Switch(
+                    t => t,
+                    fail => throw new WorstHappenedException()
+                );
+        
         public static T AssumeBest<T>(this T? type)
             => type switch
             {
                 { } valid => valid,
                 _ => throw new WorstHappenedException()
-            };
-
-        public static TOut Match<T, TOut>(this Option<T> option, Func<T, TOut> hasValueCase, Func<TOut> noValueCase)
-            => option switch
-            {
-                { HasValue: true } => hasValueCase(option.Value),
-                _ => noValueCase()
             };
 
         public static T Execute<T>(this T @this, Action<T> act)
@@ -39,13 +34,13 @@ namespace DeclarativeCSharp.Fluency
             return @this;
         }
 
-        public static Option<T> Parse<T>(this string s)
+        public static Either<T, Failure> Parse<T>(this string s)
         {
             if (typeof(T) == typeof(byte))
-                return byte.TryParse(s, out var res) ? new((T)(object)res) : Option<T>.Failure;
+                return byte.TryParse(s, out var res) ? (T)(object)res : new Failure();
             if (typeof(T) == typeof(int))
-                return int.TryParse(s, out var res) ? new((T)(object)res) : Option<T>.Failure;
-            return Option<T>.Failure;
+                return int.TryParse(s, out var res) ? (T)(object)res : new Failure();
+            return new Failure();
         }
 
         private static IEnumerable<int> InfiniteSequence(int start)
@@ -60,19 +55,17 @@ namespace DeclarativeCSharp.Fluency
                 yield return start--;
         }
 
-        public static Option<IEnumerable<int>> AsRange(this Range @this)
+        public static Either<IEnumerable<int>, Failure> AsRange(this Range @this)
             => @this.Start
                 .Inject(@this.End)
-                .Let(out var failure, Option<IEnumerable<int>>.Failure)
-                .Inject(failure)
-                .Pipe((startEnd, failure) => 
+                .Pipe(startEnd => 
                     startEnd switch 
                     {
                         ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(0)),
                         ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => new(InfiniteSequenceBackward(to)),
                         ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(from)),
                         ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to }) => new(Enumerable.Range(from, to)),
-                        _ => failure
+                        _ => new Either<IEnumerable<int>, Failure>(new Failure())
                     }
                 );
 

@@ -51,5 +51,32 @@ namespace Tests
                 .ReplaceWith(counter)
                 .Should().Be(1);
 
+        [Fact]
+        public void TestTry1()
+            => "sss"
+                .Dangerous()
+                .Try<FormatException, int>(int.Parse)
+                .Switch(_ => "parsed", _ => "not parsed")
+                .Should().Be("not parsed");
+        
+        [Fact]
+        public void TestTry2()
+            => "666"
+                .Dangerous()
+                .Try<FormatException, int>(int.Parse)
+                .Switch(_ => "parsed", _ => "not parsed")
+                .Should().Be("parsed");
+
+        [Fact]
+        public void TestThrow()
+            => Unit.Flow
+                .Dangerous()
+                .Try<Exception, Unit>(u => u.Throw(new Exception()))
+                .Switch(
+                    valid => "no thrown",
+                    thrown => "thrown"
+                    )
+                .Should().Be("thrown");
+
     }
 }

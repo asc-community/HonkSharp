@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeclarativeCSharp", "DeclarativeCSharp\DeclarativeCSharp.csproj", "{81462982-2E88-4A79-99E3-4055EBA734F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HonkSharp", "HonkSharp\HonkSharp.csproj", "{81462982-2E88-4A79-99E3-4055EBA734F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{DD541ED4-413E-4EA2-A125-1F3C3F11A7D4}"
 EndProject

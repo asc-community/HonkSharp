@@ -6,8 +6,10 @@ using System.Text;
 
 namespace DeclarativeCSharp.Functional
 {
+
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either2<T1, T2>
+    public readonly struct Either<T1, T2>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -27,24 +29,38 @@ namespace DeclarativeCSharp.Functional
                 _ => case2(field2)
             };
 
-        public Either2(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
             field1 = value;
             index = 1;
         }
-        public Either2(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
             field2 = value;
             index = 2;
         }
+
+
+        public static implicit operator Either<T1, T2>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either3<T1, T2, T3>
+    public readonly struct Either<T1, T2, T3>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -67,7 +83,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case3(field3)
             };
 
-        public Either3(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -75,7 +91,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either3(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -83,7 +99,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either3(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -91,10 +107,29 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
+
+
+        public static implicit operator Either<T1, T2, T3>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either4<T1, T2, T3, T4>
+    public readonly struct Either<T1, T2, T3, T4>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -120,7 +155,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case4(field4)
             };
 
-        public Either4(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -129,7 +164,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either4(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -138,7 +173,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either4(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -147,7 +182,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either4(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -156,10 +191,34 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either5<T1, T2, T3, T4, T5>
+    public readonly struct Either<T1, T2, T3, T4, T5>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -188,7 +247,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case5(field5)
             };
 
-        public Either5(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -198,7 +257,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either5(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -208,7 +267,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either5(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -218,7 +277,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either5(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -228,7 +287,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either5(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -238,10 +297,39 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either6<T1, T2, T3, T4, T5, T6>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -273,7 +361,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case6(field6)
             };
 
-        public Either6(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -284,7 +372,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either6(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -295,7 +383,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either6(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -306,7 +394,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either6(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -317,7 +405,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either6(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -328,7 +416,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either6(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -339,10 +427,44 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either7<T1, T2, T3, T4, T5, T6, T7>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -377,7 +499,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case7(field7)
             };
 
-        public Either7(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -389,7 +511,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either7(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -401,7 +523,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either7(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -413,7 +535,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either7(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -425,7 +547,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either7(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -437,7 +559,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either7(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -449,7 +571,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either7(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -461,10 +583,49 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either8<T1, T2, T3, T4, T5, T6, T7, T8>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -502,7 +663,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case8(field8)
             };
 
-        public Either8(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -515,7 +676,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either8(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -528,7 +689,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either8(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -541,7 +702,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either8(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -554,7 +715,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either8(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -567,7 +728,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either8(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -580,7 +741,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either8(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -593,7 +754,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either8(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -606,10 +767,54 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either9<T1, T2, T3, T4, T5, T6, T7, T8, T9>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -650,7 +855,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case9(field9)
             };
 
-        public Either9(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -664,7 +869,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either9(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -678,7 +883,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either9(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -692,7 +897,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either9(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -706,7 +911,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either9(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -720,7 +925,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either9(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -734,7 +939,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either9(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -748,7 +953,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either9(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -762,7 +967,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either9(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -776,10 +981,59 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -823,7 +1077,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case10(field10)
             };
 
-        public Either10(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -838,7 +1092,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either10(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -853,7 +1107,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either10(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -868,7 +1122,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either10(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -883,7 +1137,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either10(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -898,7 +1152,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either10(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -913,7 +1167,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either10(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -928,7 +1182,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either10(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -943,7 +1197,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either10(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -958,7 +1212,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either10(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -973,10 +1227,64 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -1023,7 +1331,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case11(field11)
             };
 
-        public Either11(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1039,7 +1347,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either11(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1055,7 +1363,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either11(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1071,7 +1379,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either11(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1087,7 +1395,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either11(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1103,7 +1411,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either11(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1119,7 +1427,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either11(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1135,7 +1443,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either11(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1151,7 +1459,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either11(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1167,7 +1475,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either11(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1183,7 +1491,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either11(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1199,10 +1507,69 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -1252,7 +1619,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case12(field12)
             };
 
-        public Either12(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1269,7 +1636,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either12(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1286,7 +1653,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either12(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1303,7 +1670,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either12(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1320,7 +1687,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either12(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1337,7 +1704,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either12(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1354,7 +1721,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either12(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1371,7 +1738,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either12(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1388,7 +1755,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either12(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1405,7 +1772,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either12(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1422,7 +1789,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either12(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1439,7 +1806,7 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
-        public Either12(T12 value)
+        public Either(T12 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1456,10 +1823,74 @@ namespace DeclarativeCSharp.Functional
             field12 = value;
             index = 12;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(T12 t)
+            => new(t);  
+
+        public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> t)
+            => t.index is 12 ? t.field12 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -1512,7 +1943,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case13(field13)
             };
 
-        public Either13(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1530,7 +1961,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either13(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1548,7 +1979,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either13(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1566,7 +1997,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either13(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1584,7 +2015,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either13(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1602,7 +2033,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either13(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1620,7 +2051,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either13(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1638,7 +2069,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either13(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1656,7 +2087,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either13(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1674,7 +2105,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either13(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1692,7 +2123,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either13(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1710,7 +2141,7 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
-        public Either13(T12 value)
+        public Either(T12 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1728,7 +2159,7 @@ namespace DeclarativeCSharp.Functional
             field12 = value;
             index = 12;
         }
-        public Either13(T13 value)
+        public Either(T13 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1746,10 +2177,79 @@ namespace DeclarativeCSharp.Functional
             field13 = value;
             index = 13;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T12 t)
+            => new(t);  
+
+        public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 12 ? t.field12 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(T13 t)
+            => new(t);  
+
+        public static explicit operator T13(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> t)
+            => t.index is 13 ? t.field13 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -1805,7 +2305,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case14(field14)
             };
 
-        public Either14(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1824,7 +2324,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either14(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1843,7 +2343,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either14(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1862,7 +2362,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either14(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1881,7 +2381,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either14(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1900,7 +2400,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either14(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1919,7 +2419,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either14(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1938,7 +2438,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either14(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1957,7 +2457,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either14(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1976,7 +2476,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either14(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -1995,7 +2495,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either14(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2014,7 +2514,7 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
-        public Either14(T12 value)
+        public Either(T12 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2033,7 +2533,7 @@ namespace DeclarativeCSharp.Functional
             field12 = value;
             index = 12;
         }
-        public Either14(T13 value)
+        public Either(T13 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2052,7 +2552,7 @@ namespace DeclarativeCSharp.Functional
             field13 = value;
             index = 13;
         }
-        public Either14(T14 value)
+        public Either(T14 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2071,10 +2571,84 @@ namespace DeclarativeCSharp.Functional
             field14 = value;
             index = 14;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T12 t)
+            => new(t);  
+
+        public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 12 ? t.field12 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T13 t)
+            => new(t);  
+
+        public static explicit operator T13(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 13 ? t.field13 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(T14 t)
+            => new(t);  
+
+        public static explicit operator T14(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> t)
+            => t.index is 14 ? t.field14 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either15<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -2133,7 +2707,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case15(field15)
             };
 
-        public Either15(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2153,7 +2727,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either15(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2173,7 +2747,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either15(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2193,7 +2767,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either15(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2213,7 +2787,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either15(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2233,7 +2807,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either15(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2253,7 +2827,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either15(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2273,7 +2847,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either15(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2293,7 +2867,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either15(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2313,7 +2887,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either15(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2333,7 +2907,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either15(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2353,7 +2927,7 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
-        public Either15(T12 value)
+        public Either(T12 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2373,7 +2947,7 @@ namespace DeclarativeCSharp.Functional
             field12 = value;
             index = 12;
         }
-        public Either15(T13 value)
+        public Either(T13 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2393,7 +2967,7 @@ namespace DeclarativeCSharp.Functional
             field13 = value;
             index = 13;
         }
-        public Either15(T14 value)
+        public Either(T14 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2413,7 +2987,7 @@ namespace DeclarativeCSharp.Functional
             field14 = value;
             index = 14;
         }
-        public Either15(T15 value)
+        public Either(T15 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2433,10 +3007,89 @@ namespace DeclarativeCSharp.Functional
             field15 = value;
             index = 15;
         }
+
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T12 t)
+            => new(t);  
+
+        public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 12 ? t.field12 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T13 t)
+            => new(t);  
+
+        public static explicit operator T13(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 13 ? t.field13 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T14 t)
+            => new(t);  
+
+        public static explicit operator T14(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 14 ? t.field14 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(T15 t)
+            => new(t);  
+
+        public static explicit operator T15(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> t)
+            => t.index is 15 ? t.field15 : throw new InvalidCastException();
+
     }
 
+
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either16<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>
+    public readonly struct Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -2498,7 +3151,7 @@ namespace DeclarativeCSharp.Functional
                 _ => case16(field16)
             };
 
-        public Either16(T1 value)
+        public Either(T1 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2519,7 +3172,7 @@ namespace DeclarativeCSharp.Functional
             field1 = value;
             index = 1;
         }
-        public Either16(T2 value)
+        public Either(T2 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2540,7 +3193,7 @@ namespace DeclarativeCSharp.Functional
             field2 = value;
             index = 2;
         }
-        public Either16(T3 value)
+        public Either(T3 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2561,7 +3214,7 @@ namespace DeclarativeCSharp.Functional
             field3 = value;
             index = 3;
         }
-        public Either16(T4 value)
+        public Either(T4 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2582,7 +3235,7 @@ namespace DeclarativeCSharp.Functional
             field4 = value;
             index = 4;
         }
-        public Either16(T5 value)
+        public Either(T5 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2603,7 +3256,7 @@ namespace DeclarativeCSharp.Functional
             field5 = value;
             index = 5;
         }
-        public Either16(T6 value)
+        public Either(T6 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2624,7 +3277,7 @@ namespace DeclarativeCSharp.Functional
             field6 = value;
             index = 6;
         }
-        public Either16(T7 value)
+        public Either(T7 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2645,7 +3298,7 @@ namespace DeclarativeCSharp.Functional
             field7 = value;
             index = 7;
         }
-        public Either16(T8 value)
+        public Either(T8 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2666,7 +3319,7 @@ namespace DeclarativeCSharp.Functional
             field8 = value;
             index = 8;
         }
-        public Either16(T9 value)
+        public Either(T9 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2687,7 +3340,7 @@ namespace DeclarativeCSharp.Functional
             field9 = value;
             index = 9;
         }
-        public Either16(T10 value)
+        public Either(T10 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2708,7 +3361,7 @@ namespace DeclarativeCSharp.Functional
             field10 = value;
             index = 10;
         }
-        public Either16(T11 value)
+        public Either(T11 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2729,7 +3382,7 @@ namespace DeclarativeCSharp.Functional
             field11 = value;
             index = 11;
         }
-        public Either16(T12 value)
+        public Either(T12 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2750,7 +3403,7 @@ namespace DeclarativeCSharp.Functional
             field12 = value;
             index = 12;
         }
-        public Either16(T13 value)
+        public Either(T13 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2771,7 +3424,7 @@ namespace DeclarativeCSharp.Functional
             field13 = value;
             index = 13;
         }
-        public Either16(T14 value)
+        public Either(T14 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2792,7 +3445,7 @@ namespace DeclarativeCSharp.Functional
             field14 = value;
             index = 14;
         }
-        public Either16(T15 value)
+        public Either(T15 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2813,7 +3466,7 @@ namespace DeclarativeCSharp.Functional
             field15 = value;
             index = 15;
         }
-        public Either16(T16 value)
+        public Either(T16 value)
         {
             Unsafe.SkipInit(out field1);
             Unsafe.SkipInit(out field2);
@@ -2834,7 +3487,89 @@ namespace DeclarativeCSharp.Functional
             field16 = value;
             index = 16;
         }
-    }
 
+
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T1 t)
+            => new(t);  
+
+        public static explicit operator T1(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 1 ? t.field1 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T2 t)
+            => new(t);  
+
+        public static explicit operator T2(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 2 ? t.field2 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T3 t)
+            => new(t);  
+
+        public static explicit operator T3(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 3 ? t.field3 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T4 t)
+            => new(t);  
+
+        public static explicit operator T4(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 4 ? t.field4 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T5 t)
+            => new(t);  
+
+        public static explicit operator T5(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 5 ? t.field5 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T6 t)
+            => new(t);  
+
+        public static explicit operator T6(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 6 ? t.field6 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T7 t)
+            => new(t);  
+
+        public static explicit operator T7(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 7 ? t.field7 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T8 t)
+            => new(t);  
+
+        public static explicit operator T8(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 8 ? t.field8 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T9 t)
+            => new(t);  
+
+        public static explicit operator T9(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 9 ? t.field9 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T10 t)
+            => new(t);  
+
+        public static explicit operator T10(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 10 ? t.field10 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T11 t)
+            => new(t);  
+
+        public static explicit operator T11(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 11 ? t.field11 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T12 t)
+            => new(t);  
+
+        public static explicit operator T12(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 12 ? t.field12 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T13 t)
+            => new(t);  
+
+        public static explicit operator T13(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 13 ? t.field13 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T14 t)
+            => new(t);  
+
+        public static explicit operator T14(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 14 ? t.field14 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T15 t)
+            => new(t);  
+
+        public static explicit operator T15(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 15 ? t.field15 : throw new InvalidCastException();
+        public static implicit operator Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(T16 t)
+            => new(t);  
+
+        public static explicit operator T16(Either<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> t)
+            => t.index is 16 ? t.field16 : throw new InvalidCastException();
+
+    }
 
 }

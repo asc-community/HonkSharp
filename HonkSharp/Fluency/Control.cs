@@ -137,25 +137,48 @@ namespace DeclarativeCSharp.Fluency
         public static ref TOut ReplaceWith<T, TOut>(this T _, ref TOut newValue)
             => ref newValue;
 
+        /// <summary>
+        /// Flow end object for exception-prone code
+        /// </summary>
         public readonly struct DangerousCode<T>
         {
             private readonly T tin;
             public DangerousCode(T tin) => this.tin = tin; 
-            public Either2<TException, TOut> Try<TException, TOut>(Func<T, TOut> dangerousCode)
+            
+            /// <summary>
+            /// Tries executing code or returns failure of the exception
+            /// </summary>
+            public Either<TOut, Failure<TException>> Try<TException, TOut>(Func<T, TOut> dangerousCode)
                 where TException : Exception
             {
                 try
                 {
-                    return new(dangerousCode(tin));
+                    return dangerousCode(tin);
                 }
                 catch (TException e)
                 {
-                    return new(e);
+                    return new Failure<TException>(e);
                 }
             }
         }
 
+        
+        /// <summary>
+        /// Starts an exception-prone block
+        /// </summary>
         public static DangerousCode<T> Dangerous<T>(this T @this)
             => new DangerousCode<T>(@this);
+
+        /// <summary>
+        /// Unconditionally throws an exception
+        /// </summary>
+        public static Unit Throw<T>(this T @this, Exception exception)
+            => throw exception;
+
+        /// <summary>
+        /// Discards the current flow end
+        /// </summary>
+        public static Unit Discard<T>(this T @this)
+            => new();
     }
 }

@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>9</LangVersion>
+    <AssemblyName>HonkSharp</AssemblyName>
+    <RootNamespace>HonkSharp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
