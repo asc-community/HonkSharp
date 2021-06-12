@@ -6,6 +6,13 @@
     <LangVersion>9</LangVersion>
     <AssemblyName>HonkSharp</AssemblyName>
     <RootNamespace>HonkSharp</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>0.0.0-poc</PackageVersion>
+    <Authors>WhiteBlackGoose</Authors>
+    <Description>Open-source package for convenient coding in declarative style for C# (with fluency, laziness, functional features)</Description>
+    <RepositoryUrl>https://github.com/WhiteBlackGoose/HonkSharp</RepositoryUrl>
+    <RepositoryType>public</RepositoryType>
+    <PackageReleaseNotes>First proof of concept version</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,6 @@
-# Declarative C\#
+# Honk\#
+
+Honk in C#!
 
 We, C# programmers, also deserve beautiful code like in F#. We don't have duck typing, arbitrary operators, DUs,
 currying, **but** instead we can have fluent coding, lazy properties, and many more.
