@@ -19,6 +19,7 @@ namespace DeclarativeCSharp.Functional
         private readonly T<#= t #> field<#= t #>;
 <# } #>
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TCapture, TOut> case<#= t #><# } #>, TCapture capture)
             => index switch
             {
@@ -28,6 +29,7 @@ namespace DeclarativeCSharp.Functional
 _ => case<#= i #>(field<#= i #>, capture)
             };
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public TOut Switch<TOut>(Func<T1, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TOut> case<#= t #><# } #>)
             => index switch
             {
@@ -38,6 +40,7 @@ _ => case<#= i #>(field<#= i #>)
             };
 
 <# for (var t = 1; t <= i; t++) { #>
+        // ReSharper disable once MemberCanBePrivate.Global
         public Either<#= typePostfix #>(T<#= t #> value)
         {
 <# for (var s = 1; s <= i; s++) { #>
@@ -50,13 +53,16 @@ _ => case<#= i #>(field<#= i #>)
 
 
 <# for (var t = 1; t <= i; t++) { #>
+        // ReSharper disable once MemberCanBePrivate.Global
         public static implicit operator Either<#= typePostfix #><T1<# for (var s = 2; s <= i; s++) { #>, T<#= s #><# } #>>(T<#= t #> t)
             => new(t);  
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public static explicit operator T<#= t #>(Either<#= typePostfix #><T1<# for (var s = 2; s <= i; s++) { #>, T<#= s #><# } #>> t)
             => t.index is <#= t #> ? t.field<#= t #> : throw new InvalidCastException();
 <# } #>
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public bool Is<T>(out T instance)
         {
 <# for (var t = 1; t <= i; t++) { #>
@@ -64,17 +70,18 @@ _ => case<#= i #>(field<#= i #>)
             {
                 if (index == <#= t #>)
                 {
-                    instance = (T)(object)field<#= t #>;
+                    instance = (T)(object)field<#= t #>!;
                     return true;
                 }
-                instance = default;
+                instance = default!;
                 return false;
             }
 <# } #>
-            instance = default;
+            instance = default!;
             return false;
         }
-
+        
+        // ReSharper disable once MemberCanBePrivate.Global
         public Either<T, Failure> As<T>()
             => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }

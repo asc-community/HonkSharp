@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DeclarativeCSharp.Fluency
+namespace HonkSharp.Fluency
 {
     public static class SeqsExtensions
     {

@@ -1,7 +1,7 @@
 using System;
 using Xunit;
-using DeclarativeCSharp.Fluency;
-using DeclarativeCSharp.Functional;
+using HonkSharp.Fluency;
+using HonkSharp.Functional;
 using FluentAssertions;
 
 namespace Tests

@@ -1,8 +1,8 @@
-﻿using DeclarativeCSharp.Laziness;
-using DeclarativeCSharp.Fluency;
+﻿using HonkSharp.Laziness;
+using HonkSharp.Fluency;
 using FluentAssertions;
 using System.Collections.Concurrent;
-using DeclarativeCSharp.Functional;
+using HonkSharp.Functional;
 using Xunit;
 
 namespace Tests

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeclarativeCSharp.Laziness
+namespace HonkSharp.Laziness
 {
     /// <summary>
     /// Provides lazy initialization experience. Is better than the Lazy class as:

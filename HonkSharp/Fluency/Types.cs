@@ -1,10 +1,12 @@
-﻿using DeclarativeCSharp.Functional;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Numerics;
+using HonkSharp.Functional;
 
 
-namespace DeclarativeCSharp.Fluency
+namespace HonkSharp.Fluency
 {
     public sealed class WorstHappenedException : Exception { }
 
@@ -13,13 +15,16 @@ namespace DeclarativeCSharp.Fluency
         public static bool Invert(this bool b) => !b;
 
         public static T AssumeBest<T>(this Either<T, Failure> either)
-            => (T)either;
+            => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
         
+        public static T AssumeBest<T>(this Either<Failure, T> either)
+            => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
+
         public static T AssumeBest<T, TReason>(this Either<T, Failure<TReason>> either)
-            => either.Switch(
-                    t => t,
-                    fail => throw new WorstHappenedException()
-                );
+            => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
+        
+        public static T AssumeBest<T, TReason>(this Either<Failure<TReason>, T> either)
+            => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
         
         public static T AssumeBest<T>(this T? type)
             => type switch
@@ -28,14 +33,37 @@ namespace DeclarativeCSharp.Fluency
                 _ => throw new WorstHappenedException()
             };
 
-        public static Either<T, Failure> Parse<T>(this string s)
+        public static Either<T, Failure> Parse<T>(this string s, NumberStyles numberStyles, IFormatProvider? provider)
         {
             if (typeof(T) == typeof(byte))
-                return byte.TryParse(s, out var res) ? (T)(object)res : new Failure();
+                return byte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(sbyte))
+                return sbyte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(ushort))
+                return ushort.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(short))
+                return short.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(uint))
+                return uint.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
             if (typeof(T) == typeof(int))
-                return int.TryParse(s, out var res) ? (T)(object)res : new Failure();
+                return int.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(ulong))
+                return ulong.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(long))
+                return long.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(float))
+                return float.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(double))
+                return double.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(decimal))
+                return decimal.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+            if (typeof(T) == typeof(BigInteger))
+                return BigInteger.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
             return new Failure();
         }
+
+        public static Either<T, Failure> Parse<T>(this string s)
+            => s.Parse<T>(NumberStyles.Any, CultureInfo.InvariantCulture);
 
         private static IEnumerable<int> InfiniteSequence(int start)
         {
@@ -69,5 +97,12 @@ namespace DeclarativeCSharp.Fluency
                 lambda(l);
             return @this;
         }
+
+        /// <summary>
+        /// Performs joining over the current
+        /// flow-end object as a delimiter
+        /// </summary>
+        public static string Join(this string @this, IEnumerable<object> collection)
+            => string.Join(@this, collection);
     }
 }

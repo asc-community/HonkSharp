@@ -7,13 +7,15 @@
     <AssemblyName>HonkSharp</AssemblyName>
     <RootNamespace>HonkSharp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.0.0-poc</PackageVersion>
+    <PackageVersion>0.0.0-poc.1</PackageVersion>
     <Authors>WhiteBlackGoose</Authors>
     <Description>Open-source package for convenient coding in declarative style for C# (with fluency, laziness, functional features)</Description>
     <RepositoryUrl>https://github.com/WhiteBlackGoose/HonkSharp</RepositoryUrl>
     <RepositoryType>public</RepositoryType>
-    <PackageReleaseNotes>First proof of concept version</PackageReleaseNotes>
+    <PackageReleaseNotes>Signed and something</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

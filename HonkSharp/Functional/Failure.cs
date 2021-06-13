@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeclarativeCSharp.Functional
+namespace HonkSharp.Functional
 {
     public readonly struct Failure
     {

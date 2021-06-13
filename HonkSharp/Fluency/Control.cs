@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using DeclarativeCSharp.Functional;
+using HonkSharp.Functional;
 
-namespace DeclarativeCSharp.Fluency
+namespace HonkSharp.Fluency
 {
     [SuppressMessage("ReSharper", "InvalidXmlDocComment")]
     public static class ControlExtensions
