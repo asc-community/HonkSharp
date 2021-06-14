@@ -1,16 +1,69 @@
-# Honk\#
+<h1 align=center>Honk#</h1>
+<p align=center><i>Modern library for declarative programmign in C#. Available on <a href="https://www.nuget.org/packages/HonkSharp">NuGet</a>.</i></p>
 
 Honk in C#!
 
-We, C# programmers, also deserve beautiful code like in F#. We don't have duck typing, arbitrary operators, DUs,
+We, C# programmers, also deserve beautiful code like in F#. We don't have duck typing, arbitrary operators, discriminated unions,
 currying, **but** instead we can have fluent coding, lazy properties, and many more.
 
 This repo contains some wrappers and API and methods for fast and convenient declarative coding in C#,
 including features from functional, fluent, and lazy programming.
 
+- [Functional programming](#functional)
+- [Fluent programming](#fluency)
+- Lazy programming
+
 Go to [examples](#examples) or [features](#features).
 
-## Features
+## Functional
+
+### Either
+
+The purpose of this type is to mimic an anonymous DU. For example,
+```cs
+var a = new Either<string, int>(5);
+var a = new Either<string, int>("Hello, world");
+```
+are both valid, where in the first one `Either` is an `int`, and in the second one, it's a `string`. It may take up to 16 types.
+
+Assume
+```cs
+Either<string, int, (int quack, float duck)> a = ... // we don't care
+```
+Here is how we work with Either.
+
+#### 1. Switch over all cases
+```cs
+var res = a.Switch(
+    s => $"It's a string {s}!",
+    i => $"It's an int {i}!",
+    q => $"It's a tuple {q.quack}!"
+)
+```
+#### 2. Check the type of the either
+```cs
+if (a.Is<int>(out var i))
+    Console.WriteLine($"It's an int");
+```
+
+#### 3. Try casting
+```cs
+var res = a.As<int>().Switch(
+    i => $"Cast successful! {i}"
+    _ => "Cast failed :("
+);
+```
+
+#### 4. Force casting
+Since `As` returns an Either of result and failure, we can force the best case by
+`AssumeBest`:
+```cs
+var res = a.As<int>().AssumeBest();
+Console.WriteLine($"It's an {int}");
+```
+If `a` turns out to be a non-int, then `AssumeBest` will throw an exception (see fluent coding for more info).
+
+## Fluency
 
 #### 1. Pipe
 
