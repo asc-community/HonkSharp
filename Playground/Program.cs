@@ -6,4 +6,11 @@ using HonkSharp.Fluency;
 using HonkSharp.Functional;
 
 
-Console.WriteLine();
+Console.ReadLine()
+    .AssumeBest()
+    .Parse<int>()
+    .Switch(
+        valid => $"Yay, valid int! {valid}",
+        _ => "Meh :("
+        )
+    .Pipe(Console.WriteLine);
