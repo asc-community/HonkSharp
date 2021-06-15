@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://github.com/WhiteBlackGoose/HonkSharp">
+    <img src="./HonkSharp/logo256.png" alt="Honk# logo" width="200" height="200">
+  </a>
+</p>
+
+
 <h1 align=center>Honk#</h1>
 <p align=center><i>Modern library for declarative programmign in C#. Available on <a href="https://www.nuget.org/packages/HonkSharp">NuGet</a>.</i></p>
 
