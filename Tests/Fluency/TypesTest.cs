@@ -47,5 +47,52 @@ namespace Tests
         [Fact] public void ParseTestBigInteger() 
             => "2384982374538274982374823794872894".Parse<BigInteger>().AssumeBest()
                 .Should().Be(BigInteger.Parse("2384982374538274982374823794872894"));
+        
+        [Fact] public void StringJoin1()
+            => ",".Join(new[]{ 1, 2 }).Should().Be("1,2");
+        [Fact] public void StringJoin2()
+            => ",".Join(new[]{ 1, 2, 3 }).Should().Be("1,2,3");
+        [Fact] public void StringJoin3()
+            => ",".Join(new[]{ "1", "2", "3" }).Should().Be("1,2,3");
+        [Fact] public void StringJoin4()
+            => ", ".Join(new[]{ "1", "2", "3" }).Should().Be("1, 2, 3");
+        [Fact] public void StringJoin5()
+            => ";".Join(new[]{ "1" }).Should().Be("1");
+        [Fact] public void StringJoin6()
+            => ",".Join(new string[]{ }).Should().Be("");
+        [Fact] public void StringJoin7()
+            => "".Join(new[]{ "1", "2", "3", "4" }).Should().Be("1234");
+        [Fact] public void StringJoin8()
+            => "; ".Join("quack").Should().Be("q; u; a; c; k");
+        
+        
+        [Fact] public void AsString1()
+            => new[]{ 'a', 'b', 'c' }.AsString().Should().Be("abc");
+        
+        [Fact] public void AsString2()
+            => new[]{ 'a' }.AsString().Should().Be("a");
+        
+        [Fact] public void AsString3()
+            => new char[]{ }.AsString().Should().Be("");
+        
+        
+        [Fact] public void Zip1()
+            => (new[] { 1, 2, 3 }, new[] { 'a', 'b', 'c' })
+                .Zip().Should()
+                .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') });
+        
+        [Fact] public void Zip2()
+            => Assert.Throws<InvalidOperationException>(
+                () => (new[] { 1, 2, 3 }, new[] { 'a', 'b' /* only two params */ })
+                    .Zip().Should()
+                    .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') }) 
+                    );
+        
+        [Fact] public void Zip3()
+            => Assert.Throws<InvalidOperationException>(
+                () => (new[] { 1, 2 /* only two params */ }, new[] { 'a', 'b', 'c' })
+                    .Zip().Should()
+                    .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') }) 
+            );
     }
 }

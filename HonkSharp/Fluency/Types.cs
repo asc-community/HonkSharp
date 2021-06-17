@@ -102,7 +102,14 @@ namespace HonkSharp.Fluency
         /// Performs joining over the current
         /// flow-end object as a delimiter
         /// </summary>
-        public static string Join(this string @this, IEnumerable<object> collection)
+        public static string Join<T>(this string @this, IEnumerable<T> collection)
             => string.Join(@this, collection);
+        
+        /// <summary>
+        /// Joins all chars into a string
+        /// from a sequence of characters
+        /// </summary>
+        public static string AsString(this IEnumerable<char> chars)
+            => "".Join(chars);
     }
 }

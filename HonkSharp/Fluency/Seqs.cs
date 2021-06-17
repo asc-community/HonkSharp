@@ -18,9 +18,6 @@ namespace HonkSharp.Fluency
                 throw new InvalidOperationException("Collections should have the same size");
         }
 
-        public static IEnumerable<(T1 left, T2 right)> Zip<T1, T2>(this IEnumerable<T1> left, IEnumerable<T2> right)
-            => (left, right).Zip();
-
         public static IEnumerable<(T1 left, T2 right)> Cartesian<T1, T2>(this (IEnumerable<T1>, IEnumerable<T2>) seqs)
         {
             foreach (var a in seqs.Item1)
