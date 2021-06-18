@@ -33,6 +33,13 @@ namespace HonkSharp.Fluency
                 _ => throw new WorstHappenedException()
             };
 
+        /// <summary>
+        /// Parses a string into one of numeric types
+        /// </summary>
+        /// <returns>
+        /// An either of the result and failure.
+        /// Does not throw an exception.
+        /// </returns>
         public static Either<T, Failure> Parse<T>(this string s, NumberStyles numberStyles, IFormatProvider? provider)
         {
             if (typeof(T) == typeof(byte))
@@ -61,42 +68,18 @@ namespace HonkSharp.Fluency
                 return BigInteger.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
             return new Failure();
         }
-
+        
+        /// <summary>
+        /// Parses a string into one of numeric types
+        /// </summary>
+        /// <returns>
+        /// An either of the result and failure.
+        /// Does not throw an exception.
+        /// </returns>
         public static Either<T, Failure> Parse<T>(this string s)
             => s.Parse<T>(NumberStyles.Any, CultureInfo.InvariantCulture);
 
-        private static IEnumerable<int> InfiniteSequence(int start)
-        {
-            while (true)
-                yield return start++;
-        }
-
-        private static IEnumerable<int> InfiniteSequenceBackward(int start)
-        {
-            while (true)
-                yield return start--;
-        }
-
-        public static Either<IEnumerable<int>, Failure> AsRange(this Range @this)
-            => @this.Start
-                .Inject(@this.End)
-                .Pipe(startEnd => 
-                    startEnd switch 
-                    {
-                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(0)),
-                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => new(InfiniteSequenceBackward(to)),
-                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => new(InfiniteSequence(from)),
-                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to }) => new(Enumerable.Range(from, to)),
-                        _ => new Either<IEnumerable<int>, Failure>(new Failure())
-                    }
-                );
-
-        public static IEnumerable<T> ExecuteForAll<T>(this IEnumerable<T> @this, Action<T> lambda)
-        {
-            foreach (var l in @this)
-                lambda(l);
-            return @this;
-        }
+        
 
         /// <summary>
         /// Performs joining over the current

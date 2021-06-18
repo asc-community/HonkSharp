@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
+<# const int COUNT = 4; #>
 
-namespace DeclarativeCSharp.Functional
+namespace HonkSharp.Functional
 {
-<# const int COUNT = 16; #>
 <# for (var i = 2; i <= COUNT; i++) { #>
-
 <# var typePostfix = i is 2 ? "" : ""; #>
-
     [StructLayout(LayoutKind.Auto)]
     public readonly struct Either<#= typePostfix #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>>
     {

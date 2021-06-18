@@ -75,24 +75,5 @@ namespace Tests
         [Fact] public void AsString3()
             => new char[]{ }.AsString().Should().Be("");
         
-        
-        [Fact] public void Zip1()
-            => (new[] { 1, 2, 3 }, new[] { 'a', 'b', 'c' })
-                .Zip().Should()
-                .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') });
-        
-        [Fact] public void Zip2()
-            => Assert.Throws<InvalidOperationException>(
-                () => (new[] { 1, 2, 3 }, new[] { 'a', 'b' /* only two params */ })
-                    .Zip().Should()
-                    .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') }) 
-                    );
-        
-        [Fact] public void Zip3()
-            => Assert.Throws<InvalidOperationException>(
-                () => (new[] { 1, 2 /* only two params */ }, new[] { 'a', 'b', 'c' })
-                    .Zip().Should()
-                    .Equal(new[]{ (1, 'a'), (2, 'b'), (3, 'c') }) 
-            );
     }
 }
