@@ -108,12 +108,12 @@ var res = a.As<int>().Switch(
 Equivalent to F#:
 ```fs
 let res = a |> function
-    | Choice2Of3 i -> $"It's an int {i}!"
+    | Choice2Of3 i -> $"Cast successful! {i}"
     | _ -> "Cast failed :("
 ```
 ```fs
 let res = a |> function
-    | :? int as i -> $"It's an int {i}!"
+    | :? int as i -> $"Cast successful! {i}"
     | _ -> "Cast failed :("
 ```
 #### 4. Force casting
@@ -121,15 +121,17 @@ Since `As` returns an Either of result and failure, we can force the best case b
 `AssumeBest`:
 ```cs
 var res = a.As<int>().AssumeBest();
-Console.WriteLine($"It's an {int}");
+Console.WriteLine($"It's an int: {res}");
 ```
 If `a` turns out to be a non-int, then `AssumeBest` will throw an exception (see fluent coding for more info).
 Equivalent to F#:
 ```fs
 let res = a |> function Choice2Of3 i -> i
+printfn $"It's an int: {res}"
 ```
 ```fs
 let res = a |> function :? int as i -> i
+printfn $"It's an int: {res}"
 ```
 ## Fluency
 
