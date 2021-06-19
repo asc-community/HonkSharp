@@ -89,13 +89,11 @@ if (a.Is<int>(out var i))
 Equivalent to F#:
 ```fs
 match a with
-| Choice2Of3 i -> printfn $"It's an int {i}!"
-| _ -> ()
+| Choice2Of3 i -> printfn $"It's an int {i}!" | _ -> ()
 ```
 ```fs
 match a with
-| :? int as i -> printfn $"It's an int {i}!"
-| _ -> ()
+| :? int as i -> printfn $"It's an int {i}!" | _ -> ()
 ```
 #### 3. Try casting
 ```cs
