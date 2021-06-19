@@ -78,5 +78,26 @@ namespace Tests
                     )
                 .Should().Be("thrown");
 
+        
+        private class BaseClass { }
+        private class DerivedClass1 : BaseClass { }
+        private class DerivedClass2 : BaseClass { }
+        
+        [Fact] public void DowncastSuccess()
+            => new DerivedClass1()
+                .Alias(out var derived)
+                .Pipe(a => (BaseClass)a)
+                .Downcast<DerivedClass1>()
+                .Should().BeSameAs(derived);
+        
+        [Fact] public void DowncastFailure()
+            => Assert.Throws<InvalidCastException>(
+                () => new DerivedClass1()
+                    .Alias(out var derived)
+                    .Pipe(a => (BaseClass)a)
+                    .Downcast<DerivedClass2>() // not the same class
+                    .Should().BeSameAs(derived)
+                );
+                
     }
 }

@@ -48,13 +48,7 @@ namespace HonkSharp.Fluency
             while (true)
                 yield return start++;
         }
-
-        private static IEnumerable<int> InfiniteSequenceBackward(int start)
-        {
-            while (true)
-                yield return start--;
-        }
-
+        
         /// <summary>
         /// Interprets range as a sequence of integers
         /// </summary>
@@ -65,9 +59,14 @@ namespace HonkSharp.Fluency
                     startEnd switch 
                     {
                         ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => InfiniteSequence(0),
-                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => InfiniteSequenceBackward(to),
+                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => Enumerable.Range(0, to + 1),
                         ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => InfiniteSequence(from),
-                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to }) => Enumerable.Range(from, to),
+                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to })
+                            => (from < to) switch
+                                { 
+                                    true => Enumerable.Range(from, to - from + 1),
+                                    false => Enumerable.Range(to, from - to + 1).Reverse()
+                                },
                         _ => throw new InvalidOperationException("Invalid range")
                     }
                 );
@@ -92,12 +91,6 @@ namespace HonkSharp.Fluency
             => range.AsRange().Where(predicate);
         
         /// <summary>
-        /// Analogue of Linq's OrderBy for range
-        /// </summary>
-        public static IEnumerable<int> OrderBy<T>(this Range range, Func<int, T> order)
-            => range.AsRange().OrderBy(order);
-
-        /// <summary>
         /// Analogue of Linq's Take
         /// </summary>
         public static IEnumerable<int> Take(this Range range, int count)
@@ -114,19 +107,19 @@ namespace HonkSharp.Fluency
         /// </summary>
         public static IEnumerable<int> Reverse(this Range range)
             => range.AsRange().Reverse();
-
+        
         /// <summary>
-        /// Non-lazily goes over the whole sequence
-        /// (which might be useful if you need to execute them
-        /// all because selectors have side effects, but
-        /// at the same time don't want to waste resources
-        /// on allocating an array with .ToArray())
+        /// Maps the given sequence into a sequence of
+        /// pairs of index and corresponding element.
         /// </summary>
-        public static Unit DoIt<T>(this IEnumerable<T> @this)
+        public static IEnumerable<(int Index, T Element)> Enumerate<T>(this IEnumerable<T> @this)
         {
-            foreach (var v in @this)
-                v.Discard();
-            return new Unit();
+            var index = 0;
+            foreach (var el in @this)
+            {
+                yield return (Index: index, Element: el);
+                index++;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using HonkSharp.Fluency;
 using Xunit;
@@ -45,5 +46,34 @@ namespace Tests
         
         [Fact] public void RangeWhere()
             => (1..5).Where(c => c % 2 == 0).Should().Equal(2, 4);
+        
+        [Fact] public void RangeTake()
+            => (2..7).Take(3).Should().Equal((2..4).AsRange());
+        
+        [Fact] public void Enumerate1()
+            => "abcd".Enumerate().Should().Equal((0, 'a'), (1, 'b'), (2, 'c'), (3, 'd'));
+        
+        [Fact] public void RangeForEach()
+        {
+            var list = new List<int>();
+            foreach (var i in 5..8)
+                list.Add(i);
+            list.Should().Equal(5, 6, 7, 8);
+        }
+        
+        [Fact] public void RangeTakeWhile()
+            => (6..14).TakeWhile(x => x < 10).Should().Equal(6, 7, 8, 9);
+        
+        [Fact] public void RangeReverse()
+            => (4..7).Reverse().Should().Equal(7, 6, 5, 4);
+        
+        [Fact] public void ReversedRange()
+            => (7..4).AsRange().Should().Equal(7, 6, 5, 4);
+        
+        [Fact] public void InfiniteSeq()
+            => (5..).Take(100).Should().Equal((5..104).AsRange());
+        
+        [Fact] public void FiniteSeq()
+            => (..6).AsRange().Should().Equal((0..6).AsRange());
     }
 }
