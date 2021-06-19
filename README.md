@@ -79,7 +79,27 @@ let res = a |> function
     | :? int as i -> $"It's an int {i}!"
     | :? {| quack:int; duck:float |} as q -> $"It's a tuple {q.quack}!"
 ```
-Note that in F# you can also reorder the branches, which unfortunately we can't imitate.
+If you would like to reorder branches, the argument names are `case1`, `case2`, `case3`, etc.
+```cs
+var res = a.Switch(
+    case2: i => $"It's an int {i}!",
+    case3: q => $"It's a tuple {q.quack}!",
+    case1: s => $"It's a string {s}!"
+)
+```
+Equivalent to F#:
+```fs
+let res = a |> function
+    | Choice2Of3 i -> $"It's an int {i}!"
+    | Choice3Of3 q -> $"It's a tuple {q.quack}!"
+    | Choice1Of3 s -> $"It's a string {s}!"
+```
+```fs
+let res = a |> function
+    | :? int as i -> $"It's an int {i}!"
+    | :? {| quack:int; duck:float |} as q -> $"It's a tuple {q.quack}!"
+    | :? string as s -> $"It's a string {s}!"
+```
 #### 2. Check the type of the either
 ```cs
 if (a.Is<int>(out var i))
