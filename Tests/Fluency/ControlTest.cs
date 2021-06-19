@@ -98,6 +98,8 @@ namespace Tests
                     .Downcast<DerivedClass2>() // not the same class
                     .Should().BeSameAs(derived)
                 );
-                
+
+        [Fact] public void NullIfConst()
+            => 6.NullIf(4 > 3).Should().BeNull();
     }
 }

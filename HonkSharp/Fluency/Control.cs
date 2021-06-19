@@ -77,6 +77,13 @@ namespace HonkSharp.Fluency
         /// </summary>
         public static TFrom? NullIf<TFrom>(this TFrom @this, Func<TFrom, bool> caseToNullify) where TFrom : struct
             => caseToNullify(@this) ? null : @this;
+        
+        /// <summary>
+        /// Nullifies the given type in case the condition
+        /// is true.
+        /// </summary>
+        public static TFrom? NullIf<TFrom>(this TFrom @this, bool caseToNullify) where TFrom : struct
+            => caseToNullify ? null : @this;
 
         /// <summary>
         /// Assigns the current
