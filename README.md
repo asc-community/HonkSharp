@@ -29,13 +29,32 @@ Go to [examples](#examples) or [features](#features).
 The purpose of this type is to mimic an anonymous DU. For example,
 ```cs
 var a = new Either<string, int>(5);
-var a = new Either<string, int>("Hello, world");
+var b = new Either<string, int>("Hello, world");
+Either<string, int> f(bool test) => test ? a : b; // We can return either of them
 ```
 are both valid, where in the first one `Either` is an `int`, and in the second one, it's a `string`. It may take up to 16 types.
-
+It is equivalent to F#:
+```fs
+let a = Choice2Of2 5
+let b = Choice1Of2 "Hello, world"
+let f = function true -> a | false -> b // We can return either of them
+```
+or [F# in the future](https://github.com/dotnet/fsharp/pull/10896):
+```fs
+let a = 5
+let b = "Hello, world"
+let f : _ -> (int|string) = function true -> a | false -> b // We can return either of them
+```
 Assume
 ```cs
 Either<string, int, (int quack, float duck)> a = ... // we don't care
+```
+which is equivalent to F#:
+```fs
+let a : Choice<string, int, {| quack:int; duck:float |}> a = ... // We don't care
+```
+```fs
+let a : (string|int|{| quack:int; duck:float |}) a = ... // We don't care
 ```
 Here is how we work with Either.
 
@@ -47,12 +66,35 @@ var res = a.Switch(
     q => $"It's a tuple {q.quack}!"
 )
 ```
+Equivalent to F#:
+```fs
+let res = a |> function
+    | Choice1Of3 s -> $"It's a string {s}!"
+    | Choice2Of3 i -> $"It's an int {i}!"
+    | Choice3Of3 q -> $"It's a tuple {q.quack}!"
+```
+```fs
+let res = a |> function
+    | :? string as s -> $"It's a string {s}!"
+    | :? int as i -> $"It's an int {i}!"
+    | :? {| quack:int; duck:float |} as q -> $"It's a tuple {q.quack}!"
+```
+Note that in F# you can also reorder the branches, which unfortunately we can't imitate.
 #### 2. Check the type of the either
 ```cs
 if (a.Is<int>(out var i))
-    Console.WriteLine($"It's an int");
+    Console.WriteLine($"It's an int {i}!");
 ```
 
+Equivalent to F#:
+```fs
+match a with Choice2Of3 i ->
+             printfn $"It's an int {i}!" | _ -> ()
+```
+```fs
+match a with :? int as i ->
+             printfn $"It's an int {i}!" | _ -> ()
+```
 #### 3. Try casting
 ```cs
 var res = a.As<int>().Switch(
@@ -61,15 +103,34 @@ var res = a.As<int>().Switch(
 );
 ```
 
+Equivalent to F#:
+```fs
+let res = a |> function
+    | Choice2Of3 i -> $"Cast successful! {i}"
+    | _ -> "Cast failed :("
+```
+```fs
+let res = a |> function
+    | :? int as i -> $"Cast successful! {i}"
+    | _ -> "Cast failed :("
+```
 #### 4. Force casting
 Since `As` returns an Either of result and failure, we can force the best case by
 `AssumeBest`:
 ```cs
 var res = a.As<int>().AssumeBest();
-Console.WriteLine($"It's an {int}");
+Console.WriteLine($"It's an int: {res}");
 ```
 If `a` turns out to be a non-int, then `AssumeBest` will throw an exception (see fluent coding for more info).
-
+Equivalent to F#:
+```fs
+let res = a |> function Choice2Of3 i -> i
+printfn $"It's an int: {res}"
+```
+```fs
+let res = a |> function :? int as i -> i
+printfn $"It's an int: {res}"
+```
 ## Fluency
 
 #### 1. Pipe
