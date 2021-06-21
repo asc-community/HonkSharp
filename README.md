@@ -6,7 +6,7 @@
 
 
 <h1 align=center>Honk#</h1>
-<p align=center><i>Modern library for declarative programmign in C#. Available on <a href="https://www.nuget.org/packages/HonkSharp">NuGet</a>.</i></p>
+<p align=center><i>Modern library for declarative programming in C#. Available on <a href="https://www.nuget.org/packages/HonkSharp">NuGet</a>.</i></p>
 
 Honk in C#!
 
@@ -18,7 +18,7 @@ including features from functional, fluent, and lazy programming.
 
 - [Functional programming](#functional)
 - [Fluent programming](#fluency)
-- Lazy programming
+- [Lazy programming](#laziness)
 
 Go to [examples](#examples) or [features](#features).
 
@@ -272,6 +272,99 @@ let big = lazy (Console.ReadLine() |> int)
 |> printfn "%d"
 ```
 
+#### 7. ReplaceWith
+This is a very simple thing that replaces the current flow end with another object.
+```cs
+public static int SomeMethod()
+    => "quack".ReplaceWith(5);
+```
+The method returns 5.
+
+#### 8. Dangerous
+This creates a block of code which can throw. `Try` returns an Either of result and failure.
+```cs
+"55".Dangerous().Try<FormatException, int>(int.Parse)
+```
+returns 55 in an either, but 
+
+```cs
+"quack".Dangerous().Try<FormatException, int>(int.Parse)
+```
+would return a `Failure<FormatException>`.
+
+## Laziness
+  
+### Lazy property: what and how?
+
+Detailed article is [here](https://habr.com/en/post/545936/), but let's go over the main points.
+
+This type serves as a field inside your immutable records to represent a record's secondary property
+that is only dependent on its primary properties.
+
+Primary properties are those `init`-able (we don't consider setters in any way here). Secondary
+properties are some results, consequences of the primary properties. For example, if we were to have
+a type `Integer`, then its primary property is its `int` value, but its secondary property is its
+`Tripled` value (since each integer has it), which only depends on its `int` value.
+
+So to achieve that, we write
+```cs
+public sealed record Number(int Value)
+{
+    ... other code
+    
+    public Number Tripled => tripled.GetValue(...);
+    private LazyProperty<Number> tripled = ...;
+}
+```
+
+As you can see, the syntax is very concise. Other benefits is that
+1. It does NOT affect the comparison. So even if one record has its `tripled` calculated and the other does not, the value of `tripled`
+is not taken into account.
+2. Copying is safe. For example, assume there's some `num` whose `Tripled` is already calculated. Then if you copy it with 
+`num with { Value = 32 }`, `Tripled` will be calculated again for the new instance.
+3. Is a struct.
+
+A few rules working with `LazyProperty`:
+1. Do NOT pass it by copy. Otherwise you risk the factory being called more than once.
+2. Do provide `this` as the argument of `GetValue`, as it invalidates on the new holder, but is valid as long as the current holder
+remains.
+3. Do NOT use it on mutable primary properties.
+
+Now, let's consider implementations of this type.
+
+### LazyPropertyA
+`A` stands for `after`: you pay a bit more time on accessing an instance of `LazyPropertyA` (after creating your record) but do not 
+pay extra time before (on creating the instance).
+
+The syntax:
+```cs
+public sealed record Number(int Value)
+{
+    ... other code
+    
+    public Number Tripled => tripled.GetValue(@this => new(@this.Value * 3), this);
+    private LazyProperty<Number> tripled;
+}
+```
+
+So as you can see, creating `tripled` is absolutely free.
+
+### LazyPropertyB
+`B` stands for `before`: you pay a bit more time on creating an instance of `LazyPropertyB`, but accessing it is a bit faster.
+
+The syntax:
+```cs
+public sealed record Number(int Value)
+{
+    ... other code
+    
+    public Number Tripled => tripled.GetValue(this);
+    private LazyProperty<Number> tripled = new(@this => new(@this.Value * 3));
+}
+```
+
+The difference between the two is the time when you pass the factory (on creating your type or on accessing the property).
+  
 ## Examples
 
 Imperative C#:
