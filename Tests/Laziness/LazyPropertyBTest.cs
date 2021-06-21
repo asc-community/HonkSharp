@@ -11,7 +11,7 @@ namespace Tests
     {
         [Fact]
         public void TestSimple1()
-            => new FieldCacheB<FieldCacheBTest, int>(_ => 4)
+            => new LazyPropertyB<FieldCacheBTest, int>(_ => 4)
                 .Alias(out var container)
                 .ReplaceWith(ref container)
                 .Pipe(c => c.GetValue(this))
@@ -23,7 +23,7 @@ namespace Tests
 
         [Fact]
         public void TestSimpleString()
-            => new FieldCacheB<FieldCacheBTest, string>(_ => "ss")
+            => new LazyPropertyB<FieldCacheBTest, string>(_ => "ss")
                 .Alias(out var container)
                 .ReplaceWith(ref container)
                 .Pipe(a => a.GetValue(this))
@@ -35,7 +35,7 @@ namespace Tests
         private record SomeTestRecord
         {
             public ConcurrentDictionary<string, string> Dict => dict.GetValue(this);
-            private FieldCacheB<SomeTestRecord, ConcurrentDictionary<string, string>> dict = new(_ => new());
+            private LazyPropertyB<SomeTestRecord, ConcurrentDictionary<string, string>> dict = new(_ => new());
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Tests
         private record Person(string FirstName, string LastName)
         {
             public string FullName => fullName.GetValue(this);
-            private FieldCacheB<Person, string> fullName = new(@this => @this.FirstName + " " + @this.LastName);
+            private LazyPropertyB<Person, string> fullName = new(@this => @this.FirstName + " " + @this.LastName);
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace Tests
         private record SomeTestRecord_static
         {
             public ConcurrentDictionary<string, string> Dict => dict.GetValue(this);
-            private FieldCacheB<SomeTestRecord_static, ConcurrentDictionary<string, string>> dict = new(_ => new());
+            private LazyPropertyB<SomeTestRecord_static, ConcurrentDictionary<string, string>> dict = new(_ => new());
         }
 
         [Fact]
