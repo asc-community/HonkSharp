@@ -19,6 +19,7 @@ including features from functional, fluent, and lazy programming.
 - [Functional programming](#functional)
 - [Fluent programming](#fluency)
 - [Lazy programming](#laziness)
+- [Convenient extensions](#convenient-extensions)
 
 Go to [examples](#examples) or [features](#features).
 
@@ -364,7 +365,66 @@ public sealed record Number(int Value)
 ```
 
 The difference between the two is the time when you pass the factory (on creating your type or on accessing the property).
-  
+
+
+## Convenient extensions
+
+#### 1. bool.Invert
+```cs
+true.Invert() // returns false
+```
+
+#### 2. string.Parse
+Parses numeric types. Returns an either.
+```cs
+"55".Parse<int>()
+"5.5".Parse<decimal>()
+"23482948294892840928492842424242".Parse<BigInteger>()
+```
+
+#### 3. string.Join
+Joins objects over a delimiter.
+```cs
+", ".Join(new [] { 1, 2, 3 }) // returns "1, 2, 3"
+```
+
+#### 4. AsString
+Concats a sequence of chars into a string
+```cs
+new [] { 'a', 'b', 'c' }.AsString() // returns "abc"
+```
+
+#### 5. Zip
+Given a tuple of sequences, zips them into one:
+```cs
+(new [] { 'a', 'b', 'c' }, new [] { 1, 2, 3 }).Zip().ToArray() // returns new [] { ('a', 1), ('b', 2), ('c', 3) }
+```
+
+#### 6. Cartesian
+Given a tuple of sequences, finds their cartesian product (aka 'each for each'):
+```cs
+(new [] { 'a', 'b' }, new [] { 1, 2 }).Zip().ToArray() // returns new [] { ('a', 1), ('a', 2), ('b', 1), ('b', 2) }
+```
+
+#### 7. AsRange
+Converts a `Range` into a sequence of natural numbers.
+```cs
+(2..4).AsRange().ToArray() // returns new [] { 2, 3, 4 }
+```
+
+Another Range-related feature is extended Enumerator:
+```cs
+foreach (var i in 2..5)
+    Console.Write(i);
+```
+(outputs `2345`)
+
+#### 8. Enumerate
+Allows to go over a sequence keeping the current index of the element.
+```cs
+"abc".Enumerate().ToArray() // returns new [] { (0, 'a'), (1, 'b'), (2, 'c') }
+```
+
 ## Examples
 
 Imperative C#:
