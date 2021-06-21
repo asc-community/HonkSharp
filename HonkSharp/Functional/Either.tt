@@ -8,7 +8,7 @@ namespace HonkSharp.Functional
 <# for (var i = 2; i <= COUNT; i++) { #>
 <# var typePostfix = i is 2 ? "" : ""; #>
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either<#= typePostfix #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>>
+    public readonly struct Either<#= typePostfix #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> : IEither
     {
         private readonly byte index;
 <# for (var t = 1; t <= i; t++) { #>
@@ -76,6 +76,16 @@ _ => case<#= i #>(field<#= i #>)
             instance = default!;
             return false;
         }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public object? ToObject()
+            => index switch
+            {
+                <# for (var t = 1; t <= i  - 1; t++) { #>
+<#= t #> => field<#= t #>,
+                <# } #>
+_ => field<#= i #>
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         public Either<T, Failure> As<T>()

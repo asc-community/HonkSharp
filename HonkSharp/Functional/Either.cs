@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace HonkSharp.Functional
 {
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either<T1, T2>
+    public readonly struct Either<T1, T2> : IEither
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -86,13 +86,21 @@ namespace HonkSharp.Functional
             instance = default!;
             return false;
         }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public object? ToObject()
+            => index switch
+            {
+                1 => field1,
+                _ => field2
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         public Either<T, Failure> As<T>()
             => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either<T1, T2, T3>
+    public readonly struct Either<T1, T2, T3> : IEither
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -204,13 +212,22 @@ namespace HonkSharp.Functional
             instance = default!;
             return false;
         }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public object? ToObject()
+            => index switch
+            {
+                1 => field1,
+                2 => field2,
+                _ => field3
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         public Either<T, Failure> As<T>()
             => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct Either<T1, T2, T3, T4>
+    public readonly struct Either<T1, T2, T3, T4> : IEither
     {
         private readonly byte index;
         private readonly T1 field1;
@@ -355,6 +372,16 @@ namespace HonkSharp.Functional
             instance = default!;
             return false;
         }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public object? ToObject()
+            => index switch
+            {
+                1 => field1,
+                2 => field2,
+                3 => field3,
+                _ => field4
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         public Either<T, Failure> As<T>()
