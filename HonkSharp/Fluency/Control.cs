@@ -5,7 +5,9 @@ using HonkSharp.Functional;
 namespace HonkSharp.Fluency
 {
     [SuppressMessage("ReSharper", "InvalidXmlDocComment")]
+#pragma warning disable 1591
     public static class ControlExtensions
+#pragma warning restore 1591
     {
         /// <summary>
         /// Performs a transformation from the current
@@ -27,7 +29,9 @@ namespace HonkSharp.Fluency
         /// <returns>
         /// An instance of TTo
         /// </returns>
+#pragma warning disable 1573
         public static TTo Pipe<TFrom, TTo>(this TFrom @this, Func<TFrom, TTo> transformation)
+#pragma warning restore 1573
             => transformation(@this);
 
         /// <summary>
@@ -53,14 +57,20 @@ namespace HonkSharp.Fluency
         /// <returns>
         /// An instance of TTo
         /// </returns>
+#pragma warning disable 1573
         public static TTo Pipe<TFrom1, TFrom2, TTo>(this (TFrom1 Current, TFrom2 Injected) @this, Func<TFrom1, TFrom2, TTo> transformation)
+#pragma warning restore 1573
             => transformation(@this.Item1, @this.Item2);
 
-        
-        public static T Pipe<T>(this T @this, Action<T> act)
+        /// <summary>
+        /// Pipes the given flow into a unit,
+        /// performing an operation
+        /// (with possibly side-effect or mutations)
+        /// </summary>
+        public static Unit Pipe<T>(this T @this, Action<T> act)
         {
             act(@this);
-            return @this;
+            return Unit.Flow;
         }
         
         /// <summary>
@@ -125,15 +135,28 @@ namespace HonkSharp.Fluency
             private TOut cache;
             private readonly T inArg;
             private readonly Func<T, TOut> factory;
+            
+            /// <summary>
+            /// The value of the type.
+            /// Is guaranteed to be evaluated once
+            /// for single-threaded use.
+            /// </summary>
             public TOut Value => evaluated ? cache : cache.Let(out evaluated, true).Let(out cache, factory(inArg)).ReplaceWith(cache);
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+            
+            /// <summary>
+            /// Creates an instance of the type.
+            /// Use LetLazy as syntax for creating it.
+            /// </summary>
             public LazyEval(Func<T, TOut> factory, T inArg)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 => (this.factory, this.inArg, evaluated, cache) = (factory, inArg, false, default);
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
+#pragma warning disable 1591
             public static implicit operator TOut(LazyEval<T, TOut> lazy)
+#pragma warning restore 1591
                 => lazy.Value;
         }
 
@@ -157,6 +180,11 @@ namespace HonkSharp.Fluency
         public readonly struct DangerousCode<T>
         {
             private readonly T tin;
+            
+            /// <summary>
+            /// Starts a block of "dangerous",
+            /// exception-prone code.
+            /// </summary>
             public DangerousCode(T tin) => this.tin = tin; 
             
             /// <summary>

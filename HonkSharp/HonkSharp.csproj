@@ -7,18 +7,26 @@
     <AssemblyName>HonkSharp</AssemblyName>
     <RootNamespace>HonkSharp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.0.0-poc.1</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Authors>WhiteBlackGoose</Authors>
     <Description>Open-source package for convenient coding in declarative style for C# (with fluency, laziness, functional features)</Description>
     <RepositoryUrl>https://github.com/WhiteBlackGoose/HonkSharp</RepositoryUrl>
     <RepositoryType>public</RepositoryType>
-    <PackageReleaseNotes>Signed and something</PackageReleaseNotes>
+    <PackageReleaseNotes>First release. See readme for docs.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <Copyright>WhiteBlackGoose 2021</Copyright>
+    <PackageIcon>logo256.png</PackageIcon>
+    <PackageTags>convenience, declarative, functional, fluency</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\HonkSharp.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="./logo256.png" Pack="True" PackagePath="" />
     <PackageReference Include="IndexRange" Version="1.0.0" />
     <PackageReference Include="IsExternalInit" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

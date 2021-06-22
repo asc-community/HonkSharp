@@ -8,24 +8,69 @@ using HonkSharp.Functional;
 
 namespace HonkSharp.Fluency
 {
+    /// <summary>
+    /// Happens when assuming the best case,
+    /// and it doesn't happen.
+    /// </summary>
     public sealed class WorstHappenedException : Exception { }
 
+#pragma warning disable 1591
     public static class TypesExtensions
+#pragma warning restore 1591
     {
-        public static bool Invert(this bool b) => !b;
+        /// <summary>
+        /// Returns an inverted boolean
+        /// </summary>
+        public static bool IsFalse(this bool b) => !b;
 
+        /// <summary>
+        /// Unconditionally casts an either to T.
+        /// If it cannot, it throws an exception
+        /// </summary>
+        /// <exception cref="WorstHappenedException">
+        /// Is thrown when either is failure.
+        /// </exception>
         public static T AssumeBest<T>(this Either<T, Failure> either)
             => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
         
+        
+        /// <summary>
+        /// Unconditionally casts an either to T.
+        /// If it cannot, it throws an exception
+        /// </summary>
+        /// <exception cref="WorstHappenedException">
+        /// Is thrown when either is failure.
+        /// </exception>
         public static T AssumeBest<T>(this Either<Failure, T> either)
             => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
 
+        /// <summary>
+        /// Unconditionally casts an either to T.
+        /// If it cannot, it throws an exception
+        /// </summary>
+        /// <exception cref="WorstHappenedException">
+        /// Is thrown when either is failure.
+        /// </exception>
         public static T AssumeBest<T, TReason>(this Either<T, Failure<TReason>> either)
             => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
         
+        /// <summary>
+        /// Unconditionally casts an either to T.
+        /// If it cannot, it throws an exception
+        /// </summary>
+        /// <exception cref="WorstHappenedException">
+        /// Is thrown when either is failure.
+        /// </exception>
         public static T AssumeBest<T, TReason>(this Either<Failure<TReason>, T> either)
             => either.Is<T>(out var res) ? res : throw new WorstHappenedException();
         
+        /// <summary>
+        /// Unconditionally casts a nullable to non-nullable.
+        /// If it cannot, it throws an exception
+        /// </summary>
+        /// <exception cref="WorstHappenedException">
+        /// Is thrown when the instance is null.
+        /// </exception>
         public static T AssumeBest<T>(this T? type)
             => type switch
             {

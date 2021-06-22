@@ -7,6 +7,10 @@ namespace HonkSharp.Functional
 {
 <# for (var i = 2; i <= COUNT; i++) { #>
 <# var typePostfix = i is 2 ? "" : ""; #>
+    /// <summary>
+    /// Represents an anonymous type union.
+    /// All types must be different.
+    /// </summary>
     [StructLayout(LayoutKind.Auto)]
     public readonly struct Either<#= typePostfix #><T1<# for (var t = 2; t <= i; t++) { #>, T<#= t #><# } #>> : IEither
     {
@@ -16,6 +20,14 @@ namespace HonkSharp.Functional
 <# } #>
 
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Switchers over the given types
+        /// in the same order as they are declared
+        /// in type args. Use this version when you
+        /// want to avoid capture: just pass the variables
+        /// as the last argument, and it will be passed as the second argument
+        /// of each case.
+        /// </summary>
         public TOut Switch<TCapture, TOut>(Func<T1, TCapture, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TCapture, TOut> case<#= t #><# } #>, TCapture capture)
             => index switch
             {
@@ -26,6 +38,11 @@ _ => case<#= i #>(field<#= i #>, capture)
             };
 
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Switchers over the given types
+        /// in the same order as they are declared
+        /// in type args.
+        /// </summary>
         public TOut Switch<TOut>(Func<T1, TOut> case1<# for (var t = 2; t <= i; t++) { #>, Func<T<#= t #>, TOut> case<#= t #><# } #>)
             => index switch
             {
@@ -37,6 +54,10 @@ _ => case<#= i #>(field<#= i #>)
 
 <# for (var t = 1; t <= i; t++) { #>
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Constructor, which initializes the
+        /// Either with the type of T<#= t #>.
+        /// </summary>
         public Either<#= typePostfix #>(T<#= t #> value)
         {
 <# for (var s = 1; s <= i; s++) { #>
@@ -48,8 +69,10 @@ _ => case<#= i #>(field<#= i #>)
 <# } #>
 
 
+#pragma warning disable 1591
 <# for (var t = 1; t <= i; t++) { #>
         // ReSharper disable once MemberCanBePrivate.Global
+
         public static implicit operator Either<#= typePostfix #><T1<# for (var s = 2; s <= i; s++) { #>, T<#= s #><# } #>>(T<#= t #> t)
             => new(t);  
 
@@ -57,8 +80,14 @@ _ => case<#= i #>(field<#= i #>)
         public static explicit operator T<#= t #>(Either<#= typePostfix #><T1<# for (var s = 2; s <= i; s++) { #>, T<#= s #><# } #>> t)
             => t.index is <#= t #> ? t.field<#= t #> : throw new InvalidCastException();
 <# } #>
+#pragma warning restore 1591
 
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Checks if either has the type of T.
+        /// If it is not, the value of res
+        /// is undefined.
+        /// </summary>
         public bool Is<T>(out T instance)
         {
 <# for (var t = 1; t <= i; t++) { #>
@@ -78,6 +107,10 @@ _ => case<#= i #>(field<#= i #>)
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Upcasts the current value of
+        /// an either instance to object.
+        /// </summary>
         public object? ToObject()
             => index switch
             {
@@ -88,9 +121,14 @@ _ => field<#= i #>
             };
         
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Casts an either to T. Returns
+        /// a failure if cannot cast
+        /// </summary>
         public Either<T, Failure> As<T>()
             => Is<T>(out var res) ? new(res) : new(new Failure()); 
     }
 <# } #>
+
 
 }

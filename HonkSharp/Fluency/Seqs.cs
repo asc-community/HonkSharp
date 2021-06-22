@@ -5,8 +5,17 @@ using HonkSharp.Functional;
 
 namespace HonkSharp.Fluency
 {
+#pragma warning disable 1591
     public static class SeqsExtensions
+#pragma warning restore 1591
     {
+        /// <summary>
+        /// Zips two sequences of a tuple. Returns
+        /// a sequence of tuples.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the lengths of tuples does not match
+        /// </exception>
         public static IEnumerable<(T1 left, T2 right)> Zip<T1, T2>(this (IEnumerable<T1>, IEnumerable<T2>) seqs)
         {
             using var iterLeft = seqs.Item1.GetEnumerator();

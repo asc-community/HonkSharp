@@ -9,7 +9,7 @@ namespace Tests
 {
     public class TypesTest
     {
-        [Fact] public void InvertTest1() => true.Invert().Should().Be(false);
+        [Fact] public void InvertTest1() => true.IsFalse().Should().Be(false);
 
         [Fact] public void ParseTest1()
             => Assert.Throws<WorstHappenedException>(

@@ -65,6 +65,13 @@ namespace HonkSharp.Laziness
         /// and instead of addressing your fields by normal this, pass this argument and address via this one
         /// (see examples on the readme)
         /// </param>
+        /// <param name="factory">
+        /// The only argument of the factory is the object passed into GetValue method.
+        /// Unlike Lazy, where you are supposed to catch variables from outside, here
+        /// you need to pass your reference object (usually, you want to pass the holder,
+        /// that is, "this) and then, in the lambda itself, you can address its fields
+        /// without limitations.
+        /// </param>
         /// <returns>The value returned by factory</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T GetValue<TThis>(Func<TThis, T> factory, TThis @this) where TThis : class

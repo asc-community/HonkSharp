@@ -13,7 +13,7 @@ namespace HonkSharp.Laziness
     /// 2) Does not affect record's Equals in a bad way Lazy does
     /// <code>
     /// public int MyProperty => myProperty.GetValue(static @this => @this.SomeComplexMethod(), @this);
-    /// public FieldCache int myProperty;
+    /// public LazyPropertyB int myProperty;
     /// </code>
     /// </summary>
     /// <typeparam name="TThis">

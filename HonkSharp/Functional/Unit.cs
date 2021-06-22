@@ -4,8 +4,16 @@ using System.Text;
 
 namespace HonkSharp.Functional
 {
+    /// <summary>
+    /// The most basic type, extendable
+    /// replacement for C#'s void.
+    /// </summary>
     public struct Unit
     {
+        /// <summary>
+        /// Same as new Unit(). Starts a flow
+        /// </summary>
+        // ReSharper disable once UnassignedField.Global
         public static Unit Flow;
     }
 }
