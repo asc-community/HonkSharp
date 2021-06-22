@@ -51,8 +51,8 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T1 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
+            field1 = default!;
+            field2 = default!;
             field1 = value;
             index = 1;
         }
@@ -63,8 +63,8 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T2 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
+            field1 = default!;
+            field2 = default!;
             field2 = value;
             index = 2;
         }
@@ -191,9 +191,9 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T1 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
             field1 = value;
             index = 1;
         }
@@ -204,9 +204,9 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T2 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
             field2 = value;
             index = 2;
         }
@@ -217,9 +217,9 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T3 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
             field3 = value;
             index = 3;
         }
@@ -368,10 +368,10 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T1 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
-            Unsafe.SkipInit(out field4);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
+            field4 = default!;
             field1 = value;
             index = 1;
         }
@@ -382,10 +382,10 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T2 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
-            Unsafe.SkipInit(out field4);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
+            field4 = default!;
             field2 = value;
             index = 2;
         }
@@ -396,10 +396,10 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T3 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
-            Unsafe.SkipInit(out field4);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
+            field4 = default!;
             field3 = value;
             index = 3;
         }
@@ -410,10 +410,10 @@ namespace HonkSharp.Functional
         /// </summary>
         public Either(T4 value)
         {
-            Unsafe.SkipInit(out field1);
-            Unsafe.SkipInit(out field2);
-            Unsafe.SkipInit(out field3);
-            Unsafe.SkipInit(out field4);
+            field1 = default!;
+            field2 = default!;
+            field3 = default!;
+            field4 = default!;
             field4 = value;
             index = 4;
         }

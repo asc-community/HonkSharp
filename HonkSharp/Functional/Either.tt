@@ -61,7 +61,7 @@ _ => case<#= i #>(field<#= i #>)
         public Either<#= typePostfix #>(T<#= t #> value)
         {
 <# for (var s = 1; s <= i; s++) { #>
-            Unsafe.SkipInit(out field<#= s #>);
+            field<#= s #> = default!;
 <# } #>
             field<#= t #> = value;
             index = <#= t #>;
