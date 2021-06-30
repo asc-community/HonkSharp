@@ -35,6 +35,20 @@ namespace HonkSharp.Fluency
             => transformation(@this);
 
         /// <summary>
+        /// Same as <see cref="Pipe{TFrom, TTo}"/>, but for
+        /// 2 sequential transformations
+        /// </summary>
+        public static T3 Pipe<T1, T2, T3>(this T1 @this, Func<T1, T2> t1, Func<T2, T3> t2)
+            => t2(t1(@this));
+
+        /// <summary>
+        /// Same as <see cref="Pipe{TFrom, TTo}"/>, but for
+        /// 3 sequential transformations
+        /// </summary>
+        public static T4 Pipe<T1, T2, T3, T4>(this T1 @this, Func<T1, T2> t1, Func<T2, T3> t2, Func<T3, T4> t3)
+            => t3(t2(t1(@this)));
+
+        /// <summary>
         /// Performs a transformation from the current
         /// object AND injected object to a new object
         /// with the given mapping function.

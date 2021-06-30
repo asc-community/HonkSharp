@@ -19,6 +19,14 @@ namespace Tests
                 .Should().Be("7a6");
 
         [Fact]
+        public void TestDoublePipe1()
+            => 3.5m.Pipe(a => a.ToString(), a => a.Split(".")[1]).Should().Be("5");
+
+        [Fact]
+        public void TestTriplePipe1()
+            => 3.5m.Pipe(a => a.ToString(), a => a.Split("."), a => a[1]).Should().Be("5");
+
+        [Fact]
         public void TestNullIf1()
             => 5.NullIf(a => a < 0).Should().Be(5);
 

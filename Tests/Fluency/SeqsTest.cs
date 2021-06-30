@@ -75,5 +75,8 @@ namespace Tests
         
         [Fact] public void FiniteSeq()
             => (..6).AsRange().Should().Equal((0..6).AsRange());
+
+        [Fact] public void PipingSequence()
+            => (..6).AsRange().Pipe(a => a * 2).Should().Equal(0, 2, 4, 6, 8, 10, 12);
     }
 }

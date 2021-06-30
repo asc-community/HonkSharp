@@ -22,5 +22,16 @@ namespace HonkSharp.Fluency
                 TTo res => res,
                 _ => throw new InvalidCastException()
             };
+
+        /// <summary>
+        /// Upcasts the given instance to the specified type,
+        /// that is, casts to its parent type.
+        /// </summary>
+        public static TTo Upcast<TTo>(this object o)
+            => o switch
+            {
+                TTo res => res,
+                _ => throw new InvalidCastException()
+            };
     }
 }

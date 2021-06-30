@@ -6,15 +6,14 @@ using HonkSharp.Fluency;
 using HonkSharp.Functional;
 using System.Linq;
 
-(3..)
-    .Where(a => a % 2 is 0)
-    .Select(a => a * a)
-    .TakeWhile(a => a < 1000)
-    .Pipe(", ".Join)
-    .Pipe(Console.WriteLine);
+
+5.3.Pipe(
+    a => a.ToString(), 
+    a => a.Split("."), 
+    a => a[0]
+).Pipe(Console.WriteLine);
 
 
-Console.ReadLine();
 /*
 Console.ReadLine()
     .AssumeBest()

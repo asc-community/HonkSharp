@@ -15,5 +15,10 @@ namespace HonkSharp.Functional
         /// </summary>
         // ReSharper disable once UnassignedField.Global
         public static Unit Flow;
+
+        /// <summary>
+        /// Return this when nothing needs to be returned.
+        /// </summary>
+        public static Unit Void;
     }
 }

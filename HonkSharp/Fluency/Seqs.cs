@@ -10,6 +10,28 @@ namespace HonkSharp.Fluency
 #pragma warning restore 1591
     {
         /// <summary>
+        /// Lets all elements of a sequence through a map,
+        /// returning a sequence of mapped elements. Unlike Select,
+        /// works non-lazily.
+        /// </summary>
+        public static IEnumerable<TOut> Pipe<TIn, TOut>(this IEnumerable<TIn> @this, Func<TIn, TOut> map)
+        {
+            foreach (var el in @this)
+                yield return map(el);
+        }
+
+        /// <summary>
+        /// Lets all elements of a sequence through an action.
+        /// Returns a Unit, since nothing else makes sense to be returned.
+        /// </summary>
+        public static Unit Pipe<TIn>(this IEnumerable<TIn> @this, Action<TIn> action)
+        {
+            foreach (var el in @this)
+                action(el);
+            return Unit.Void;
+        }
+
+        /// <summary>
         /// Zips two sequences of a tuple. Returns
         /// a sequence of tuples.
         /// </summary>
