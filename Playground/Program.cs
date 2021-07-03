@@ -7,11 +7,17 @@ using HonkSharp.Functional;
 using System.Linq;
 
 
-5.3.Pipe(
-    a => a.ToString(), 
-    a => a.Split("."), 
-    a => a[0]
-).Pipe(Console.WriteLine);
+"333".Parse<int>().Pipe(c => Console.WriteLine(c));
+
+"3ddd".Parse<int>().Pipe(c => Console.WriteLine(c));
+
+((string?)null).Dangerous().Try<Exception, string>(s => s!.ToString()).Pipe(c => Console.WriteLine(c));
+
+
+
+
+
+
 
 
 /*

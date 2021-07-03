@@ -132,6 +132,16 @@ namespace HonkSharp.Functional
                 1 => field1,
                 _ => field2
             };
+
+        /// <summary>
+        /// Returns ToString of the underlying value.
+        /// </summary>
+        public override string? ToString()
+            => index switch
+            {
+                1 => field1?.ToString(),
+                _ => field2?.ToString()
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         /// <summary>
@@ -305,6 +315,17 @@ namespace HonkSharp.Functional
                 1 => field1,
                 2 => field2,
                 _ => field3
+            };
+
+        /// <summary>
+        /// Returns ToString of the underlying value.
+        /// </summary>
+        public override string? ToString()
+            => index switch
+            {
+                1 => field1?.ToString(),
+                2 => field2?.ToString(),
+                _ => field3?.ToString()
             };
         
         // ReSharper disable once MemberCanBePrivate.Global
@@ -518,6 +539,18 @@ namespace HonkSharp.Functional
                 2 => field2,
                 3 => field3,
                 _ => field4
+            };
+
+        /// <summary>
+        /// Returns ToString of the underlying value.
+        /// </summary>
+        public override string? ToString()
+            => index switch
+            {
+                1 => field1?.ToString(),
+                2 => field2?.ToString(),
+                3 => field3?.ToString(),
+                _ => field4?.ToString()
             };
         
         // ReSharper disable once MemberCanBePrivate.Global

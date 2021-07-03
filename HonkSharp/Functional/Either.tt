@@ -119,6 +119,18 @@ _ => case<#= i #>(field<#= i #>)
                 <# } #>
 _ => field<#= i #>
             };
+
+        /// <summary>
+        /// Returns ToString of the underlying value.
+        /// </summary>
+        public override string? ToString()
+            => index switch
+            {
+                <# for (var t = 1; t <= i  - 1; t++) { #>
+<#= t #> => field<#= t #>?.ToString(),
+                <# } #>
+_ => field<#= i #>?.ToString()
+            };
         
         // ReSharper disable once MemberCanBePrivate.Global
         /// <summary>

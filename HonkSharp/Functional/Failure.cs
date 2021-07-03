@@ -12,7 +12,9 @@ namespace HonkSharp.Functional
     /// </summary>
     public readonly struct Failure
     {
-        
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        public override string ToString() => "Failure";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
     
     /// <summary>
@@ -23,11 +25,10 @@ namespace HonkSharp.Functional
     {
 #pragma warning disable 1591
         public TReason Reason { get; }
-#pragma warning restore 1591
-
-#pragma warning disable 1591
         public Failure(TReason reason)
-#pragma warning restore 1591
             => Reason = reason;
+
+        public override string ToString() => $"Failure (reason: {Reason?.ToString() ?? "null"})";
+#pragma warning restore 1591
     }
 }
