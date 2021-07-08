@@ -82,46 +82,46 @@ namespace HonkSharp.Fluency
         /// Parses a string into one of numeric types
         /// </summary>
         /// <returns>
-        /// An either of the result and failure.
+        /// The parsed value or null, if it failed
         /// Does not throw an exception.
         /// </returns>
-        public static Either<T, Failure> Parse<T>(this string s, NumberStyles numberStyles, IFormatProvider? provider)
+        public static T? Parse<T>(this string s, NumberStyles numberStyles, IFormatProvider? provider) where T : struct
         {
             if (typeof(T) == typeof(byte))
-                return byte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return byte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(sbyte))
-                return sbyte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return sbyte.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(ushort))
-                return ushort.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return ushort.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(short))
-                return short.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return short.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(uint))
-                return uint.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return uint.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(int))
-                return int.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return int.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(ulong))
-                return ulong.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return ulong.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(long))
-                return long.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return long.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(float))
-                return float.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return float.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(double))
-                return double.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return double.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(decimal))
-                return decimal.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
+                return decimal.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
             if (typeof(T) == typeof(BigInteger))
-                return BigInteger.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : new Failure();
-            return new Failure();
+                return BigInteger.TryParse(s, numberStyles, provider, out var res) ? (T)(object)res : null;
+            return null;
         }
-        
+
         /// <summary>
         /// Parses a string into one of numeric types
         /// </summary>
         /// <returns>
-        /// An either of the result and failure.
+        /// The parsed value or null, if it failed
         /// Does not throw an exception.
         /// </returns>
-        public static Either<T, Failure> Parse<T>(this string s)
+        public static T? Parse<T>(this string s) where T : struct
             => s.Parse<T>(NumberStyles.Any, CultureInfo.InvariantCulture);
 
         
