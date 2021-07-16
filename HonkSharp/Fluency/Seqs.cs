@@ -84,30 +84,59 @@ namespace HonkSharp.Fluency
         /// Interprets range as a sequence of integers
         /// </summary>
         public static IEnumerable<int> AsRange(this Range @this)
-            => @this.Start
-                .Inject(@this.End)
-                .Pipe(startEnd => 
-                    startEnd switch 
-                    {
-                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => InfiniteSequence(0),
-                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => Enumerable.Range(0, to + 1),
-                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => InfiniteSequence(from),
-                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to })
-                            => (from < to) switch
-                                { 
-                                    true => Enumerable.Range(from, to - from + 1),
-                                    false => Enumerable.Range(to, from - to + 1).Reverse()
-                                },
-                        _ => throw new InvalidOperationException("Invalid range")
-                    }
-                );
+            => @this.GetEnumerator() switch
+            {
+                RangeEnumerator(var from, var to, 1) => Enumerable.Range(from, to - from + 1),
+                RangeEnumerator(var from, var to, _) => Enumerable.Range(to, from - to + 1).Reverse()
+            };
         
         /// <summary>
         /// Gets a enumerator. Useful for
         /// foreach loops
         /// </summary>
-        public static IEnumerator<int> GetEnumerator(this Range range)
-            => range.AsRange().GetEnumerator();
+        public static RangeEnumerator GetEnumerator(this Range @this)
+            => @this.Start
+                .Inject(@this.End)
+                .Pipe(startEnd =>
+                    startEnd switch
+                    {
+                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: true, Value: 0 }) => new RangeEnumerator(0, int.MaxValue, 1),
+                        ({ IsFromEnd: true, Value: 0 }, { IsFromEnd: false, Value: var to }) => new RangeEnumerator(0, to + 1, 1),
+                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: true, Value: 0 }) => new RangeEnumerator(from, int.MaxValue, 1),
+                        ({ IsFromEnd: false, Value: var from }, { IsFromEnd: false, Value: var to })
+                            => (from < to) switch
+                            {
+                                true => new RangeEnumerator(from, to, 1),
+                                false => new RangeEnumerator(from, to, -1),
+                            },
+                        _ => throw new InvalidOperationException("Invalid range")
+                    }
+                );
+
+        /// <summary>
+        /// A struct (stack-allocated) enum
+        /// </summary>
+        public record struct RangeEnumerator(int From, int To, int Step)
+        {
+            private int curr = From - Step;
+
+            /// <summary>
+            /// Moves to the next element. There
+            /// should be at least one call of this
+            /// method before getting Current
+            /// </summary>
+            public bool MoveNext()
+            {
+                curr += Step;
+                return curr != To + Step;
+            }
+
+            /// <summary>
+            /// The current element (undefined if MoveNext
+            /// is not called).
+            /// </summary>
+            public int Current => curr;
+        }
         
         /// <summary>
         /// Analogue of Linq's Select for range
