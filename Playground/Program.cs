@@ -7,25 +7,36 @@ using HonkSharp.Functional;
 using System.Linq;
 
 
-"333".Parse<int>().Pipe(c => Console.WriteLine(c));
-
-"3ddd".Parse<int>().Pipe(c => Console.WriteLine(c));
-
-((string?)null).Dangerous().Try<Exception, string>(s => s!.ToString()).Pipe(c => Console.WriteLine(c));
-
-
-
-
-
-
+var l = LList.OfSequence(new [] { 1, 2, 3, 4, 5, 6 });
+Console.WriteLine(l);
+Console.WriteLine(Reverse(l));
+Console.WriteLine(10 + Reverse(l));
+Console.WriteLine(l == LList.OfSequence(new [] { 1, 2, 3, 4, 5 }));
+Console.WriteLine(l == LList.OfSequence(new [] { 1, 2, 3 }));
+Console.WriteLine(Quack(l));
+Console.WriteLine(Quack(l.Map(el => el * 3)));
+Console.WriteLine(l.Where(c => c > 3).Map(c => c / 3));
 
 
-/*
-Console.ReadLine()
-    .AssumeBest()
-    .Parse<int>()
-    .Switch(
-        valid => $"Yay, valid int! {valid}",
-        _ => "Meh :("
-        )
-    .Pipe(Console.WriteLine);*/
+
+static int Sum(LList<int>? ints)
+    => ints switch
+    {
+        null => 0,
+        (var head, var tail) => head + Sum(tail)
+    };
+
+static LList<int>? Reverse(LList<int>? ints, LList<int>? inner = null)
+    => ints switch
+    {
+        null => inner,
+        (var head, var tail) => Reverse(tail, head + inner)
+    };
+
+static LList<(int, int)>? Quack(LList<int>? ints)
+    => ints switch
+    {
+        null => null,
+        (var h1, (var h2, var tail)) => (h1, h2) + Quack(tail),
+        _ => throw new ArgumentException(nameof(ints)),
+    };

@@ -7,12 +7,12 @@
     <AssemblyName>HonkSharp</AssemblyName>
     <RootNamespace>HonkSharp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>WhiteBlackGoose</Authors>
     <Description>Open-source package for convenient coding in declarative style for C# (with fluency, laziness, functional features)</Description>
     <RepositoryUrl>https://github.com/WhiteBlackGoose/HonkSharp</RepositoryUrl>
-    <RepositoryType>public</RepositoryType>
-    <PackageReleaseNotes>Multitargeting added.</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>A few functions added, a few bugs fixed</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>

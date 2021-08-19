@@ -74,6 +74,5 @@ namespace Tests
         
         [Fact] public void AsString3()
             => new char[]{ }.AsString().Should().Be("");
-        
     }
 }
