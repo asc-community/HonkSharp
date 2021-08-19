@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using FluentAssertions;
 using HonkSharp.Fluency;
@@ -77,15 +78,15 @@ namespace Tests
             => LList.Of(1, 2, 4, 5, 6)[2].Should().Be(4);
 
         [Fact] public void Index4()
-            => Assert.Throws<ArgumentOutOfRangeException>(
+            => Assert.Throws<IndexOutOfRangeException>(
                 () => LList.Of(1, 2, 3)[-1]);
 
         [Fact] public void Index5()
-            => Assert.Throws<ArgumentOutOfRangeException>(
+            => Assert.Throws<IndexOutOfRangeException>(
                 () => LList.Of(1, 2, 3)[-3]);
 
         [Fact] public void Index6()
-            => Assert.Throws<ArgumentOutOfRangeException>(
+            => Assert.Throws<IndexOutOfRangeException>(
                 () => LList.Of(1, 2, 3)[3]);
 
         [Fact] public void Index7() 
@@ -93,5 +94,36 @@ namespace Tests
                 .Alias(out var list)
                 .ReplaceWith(list[0] + list[1] + list[2] + list[3])
                 .Should().Be(10);
+
+        [Fact] public void Foreach1()
+        {
+            var list = LList.Of(1, 2, 3, 4, 5);
+            var res = new List<int>();
+            foreach (var el in list)
+                res.Add(el);
+            Assert.Equal(new[] { 1, 2, 3, 4, 5 }, res);
+        }
+
+        [Fact]
+        public void Foreach2()
+        {
+            var list = LList.Of<int>();
+            var res = new List<int>();
+            foreach (var el in list)
+                res.Add(el);
+            Assert.Equal(new int[0], res);
+        }
+
+        [Fact]
+        public void Foreach3()
+        {
+            var list = LList.Of(1, 2, 3, 4, 5);
+            var res = new List<int>();
+            foreach (var el in list)
+                res.Add(el);
+            foreach (var el in list)
+                res.Add(el);
+            Assert.Equal(new[] { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 }, res);
+        }
     }
 }

@@ -119,24 +119,16 @@ namespace HonkSharp.Functional
 
 
         public override string ToString()
-            => Iterate().Pipe(", ".Join).Pipe(c => $"[ {c} ]");
+            => this.Pipe(", ".Join).Pipe(c => $"[ {c} ]");
 
+        public Enumerator GetEnumerator()
+            => new Enumerator(this);
 
-        private IEnumerable<T> Iterate()
-        {
-            var curr = this;
-            while (curr is not LEmpty<T>)
-            {
-                yield return curr.Head;
-                curr = curr.Tail;
-            }
-        }
-
-        public IEnumerator<T> GetEnumerator()
-            => Iterate().GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+            => new Enumerator(this);
 
         IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+            => new Enumerator(this);
 
         /// <summary>
         /// This is just an empty list of the given type.
@@ -150,7 +142,7 @@ namespace HonkSharp.Functional
         {
             get 
             {
-                if (index < 0) throw new ArgumentOutOfRangeException($"Invalid index: {index}");
+                if (index < 0) throw new IndexOutOfRangeException($"Invalid index: {index}");
                 var curr = this;
                 while (index > 0 && curr is not LEmpty<T>)
                 {
@@ -158,9 +150,41 @@ namespace HonkSharp.Functional
                     index--;
                 }
                 if (curr is LEmpty<T>)
-                    throw new ArgumentOutOfRangeException($"Invalid index: {index}");
+                    throw new IndexOutOfRangeException($"Invalid index: {index}");
                 return curr.Head;
             }
+        }
+
+        /// <summary>
+        /// Enumerating struct for llist
+        /// </summary>
+        public struct Enumerator : IEnumerator<T>
+        {
+            private LList<T>? curr;
+            private readonly LList<T> list;
+            public Enumerator(LList<T> list)
+                => (this.list, this.curr) = (list, null);
+
+            public T Current =>
+                curr is null or LEmpty<T>
+                ? throw new InvalidOperationException() 
+                : curr.Head;
+
+            public void Dispose() { }
+
+            public bool MoveNext()
+            {
+                if (curr is null)
+                    curr = list;
+                else
+                    curr = curr.Tail;
+                return curr is not LEmpty<T>;
+            }
+
+            public void Reset()
+                => curr = null;
+
+            object IEnumerator.Current => Current!;
         }
     }
 

@@ -7,12 +7,12 @@ using HonkSharp.Functional;
 using System.Linq;
 
 
-var l = LList.OfSequence(new [] { 1, 2, 3, 4, 5, 6 });
+var l = LList.Of(new [] { 1, 2, 3, 4, 5, 6 });
 Console.WriteLine(l);
 Console.WriteLine(Reverse(l));
 Console.WriteLine(10 + Reverse(l));
-Console.WriteLine(l == LList.OfSequence(new [] { 1, 2, 3, 4, 5 }));
-Console.WriteLine(l == LList.OfSequence(new [] { 1, 2, 3 }));
+Console.WriteLine(l == LList.Of(new [] { 1, 2, 3, 4, 5 }));
+Console.WriteLine(l == LList.Of(new [] { 1, 2, 3 }));
 Console.WriteLine(Quack(l));
 Console.WriteLine(Quack(l.Map(el => el * 3)));
 Console.WriteLine(l.Where(c => c > 3).Map(c => c / 3));
