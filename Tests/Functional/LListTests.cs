@@ -60,5 +60,11 @@ namespace Tests
 
         [Fact] public void CustomTraverse2()
             => Assert.Throws<Exception>(() => LList.Of(1, 2, 3).Pipe(GroupByPairs));
+        
+        [Fact] public void ToString1()
+            => LList.Of(1, 2, 3).ToString().Should().Be("[ 1, 2, 3 ]");
+
+        [Fact] public void ToString2()
+            => LList.Of<int>().ToString().Should().Be("[]");
     }
 }

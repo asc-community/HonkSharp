@@ -145,5 +145,7 @@ namespace HonkSharp.Functional
     public record LEmpty<T> : LList<T>
     {
         internal LEmpty() : base(default!, default!) { }
+
+        public override string ToString() => "[]";
     }
 }

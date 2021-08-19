@@ -152,6 +152,65 @@ printfn $"It's an int: {res}"
 let res = a |> function :? int as i -> i
 printfn $"It's an int: {res}"
 ```
+
+### LList
+
+It's a singly-linked immutable list with a head element and tail.
+
+#### 1. Create it from sequence
+
+```cs
+var list = LList.Of(1, 2, 3);
+
+IEnumerable<string> seq = MyCustomSequence();
+var list = LList.Of(seq);
+```
+
+#### 2. Add elements
+
+```cs
+var list = LList.Of(1, 2, 3);
+
+var newList = 0 + list; // <=> LList.Of(0, 1, 2, 3)
+var newList = list.Add(0); // same
+```
+
+#### 3. Call ToString
+
+```cs
+var list = LList.Of(1, 2, 3);
+Console.WriteLine(list);
+>>> [ 1, 2, 3 ]
+```
+
+#### 4. Switch over elements
+
+```cs
+var list = LList.Of(1, 2, 3);
+
+var res = list switch
+{
+    LEmpty<int> => "This list is empty!",
+    (var head, LEmpty<int>) => $"This list has one element: {head}",
+    (var h1, (var h2, var tail)) => $"This list has at least two elements!11!"
+};
+```
+
+#### 5. Built-in fluent functions to work with list
+
+```cs
+var list = LList.Of(1, 2, 3);
+
+list
+    .Where(a => a > 2)
+    .Map(a => 
+        a.ToString()
+        .ToArray()
+    )
+    .Flatten()
+    .Reverse();
+```
+
 ## Fluency
 
 #### 1. Pipe
