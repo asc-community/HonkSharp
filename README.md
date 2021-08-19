@@ -218,6 +218,16 @@ list
     .Reverse();
 ```
 
+#### 7. Indexing
+
+```cs
+var list = LList.Of(1, 2, 3);
+
+list[0] + list[2];
+```
+
+Indexing works slowly (linearly traversing the list).
+
 ## Fluency
 
 #### 1. Pipe

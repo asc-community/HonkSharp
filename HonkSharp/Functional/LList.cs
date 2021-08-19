@@ -142,6 +142,26 @@ namespace HonkSharp.Functional
         /// This is just an empty list of the given type.
         /// </summary>
         public static readonly LEmpty<T> Empty = new();
+
+        /// <summary>
+        /// Linear indexer
+        /// </summary>
+        public T this[int index]
+        {
+            get 
+            {
+                if (index < 0) throw new ArgumentOutOfRangeException($"Invalid index: {index}");
+                var curr = this;
+                while (index > 0 && curr is not LEmpty<T>)
+                {
+                    curr = curr.Tail;
+                    index--;
+                }
+                if (curr is LEmpty<T>)
+                    throw new ArgumentOutOfRangeException($"Invalid index: {index}");
+                return curr.Head;
+            }
+        }
     }
 
     public record LEmpty<T> : LList<T>

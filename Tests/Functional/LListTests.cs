@@ -66,5 +66,32 @@ namespace Tests
 
         [Fact] public void ToString2()
             => LList.Of<int>().ToString().Should().Be("[]");
+
+        [Fact] public void Index1()
+            => LList.Of(1, 2)[0].Should().Be(1);
+
+        [Fact] public void Index2()
+        => LList.Of(1, 2)[1].Should().Be(2);
+
+        [Fact] public void Index3()
+            => LList.Of(1, 2, 4, 5, 6)[2].Should().Be(4);
+
+        [Fact] public void Index4()
+            => Assert.Throws<ArgumentOutOfRangeException>(
+                () => LList.Of(1, 2, 3)[-1]);
+
+        [Fact] public void Index5()
+            => Assert.Throws<ArgumentOutOfRangeException>(
+                () => LList.Of(1, 2, 3)[-3]);
+
+        [Fact] public void Index6()
+            => Assert.Throws<ArgumentOutOfRangeException>(
+                () => LList.Of(1, 2, 3)[3]);
+
+        [Fact] public void Index7() 
+            => LList.Of(1, 2, 3, 4)
+                .Alias(out var list)
+                .ReplaceWith(list[0] + list[1] + list[2] + list[3])
+                .Should().Be(10);
     }
 }
