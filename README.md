@@ -166,7 +166,14 @@ IEnumerable<string> seq = MyCustomSequence();
 var list = LList.Of(seq);
 ```
 
-#### 2. Add elements
+#### 2. Create empty list
+
+```cs
+var empty = LList.Of<int>();
+var empty = LList<int>.Empty;
+```
+
+#### 3. Add elements
 
 ```cs
 var list = LList.Of(1, 2, 3);
@@ -175,7 +182,7 @@ var newList = 0 + list; // <=> LList.Of(0, 1, 2, 3)
 var newList = list.Add(0); // same
 ```
 
-#### 3. Call ToString
+#### 4. Call ToString
 
 ```cs
 var list = LList.Of(1, 2, 3);
@@ -183,7 +190,7 @@ Console.WriteLine(list);
 >>> [ 1, 2, 3 ]
 ```
 
-#### 4. Switch over elements
+#### 5. Switch over elements
 
 ```cs
 var list = LList.Of(1, 2, 3);
@@ -196,7 +203,7 @@ var res = list switch
 };
 ```
 
-#### 5. Built-in fluent functions to work with list
+#### 6. Built-in fluent functions to work with list
 
 ```cs
 var list = LList.Of(1, 2, 3);

@@ -31,7 +31,9 @@ namespace HonkSharp.Functional
         /// corresponds to the head element of the list.
         /// </summary>
         public static LList<T> Of<T>(params T[] arr)
-            => Of((IEnumerable<T>)arr);
+            => arr.Length is 0
+            ? LList<T>.Empty
+            : Of((IEnumerable<T>)arr);
 
         /// <summary>
         /// Returns a new list with the element added to head
