@@ -87,8 +87,8 @@ namespace HonkSharp.Fluency
         public static IEnumerable<int> AsRange(this Range @this)
             => @this.GetEnumerator() switch
             {
-                RangeEnumerator(var from, var to, 1) => Enumerable.Range(from, to - from + 1),
-                RangeEnumerator(var from, var to, _) => Enumerable.Range(to, from - to + 1).Reverse()
+                RangeEnumerator(var from, var to, 1) => Enumerable.Range(from + 1, to - from - 1),
+                RangeEnumerator(var from, var to, _) => Enumerable.Range(to + 1, from - 1 - to).Reverse()
             };
         
         /// <summary>
@@ -124,7 +124,7 @@ namespace HonkSharp.Fluency
                 => (@from, to, step) = (curr, this.to, this.step);
 
             /// <summary></summary>
-            public RangeEnumerator(int @from, int to, int step)
+            internal RangeEnumerator(int @from, int to, int step)
             {
                 this.to = to + step;
                 this.step = step;

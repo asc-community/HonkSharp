@@ -60,7 +60,16 @@ namespace Tests
                 list.Add(i);
             list.Should().Equal(5, 6, 7, 8);
         }
-        
+
+        [Fact]
+        public void RangeForEachReverse()
+        {
+            var list = new List<int>();
+            foreach (var i in 8..5)
+                list.Add(i);
+            list.Should().Equal(8, 7, 6, 5);
+        }
+
         [Fact] public void RangeTakeWhile()
             => (6..14).TakeWhile(x => x < 10).Should().Equal(6, 7, 8, 9);
         
