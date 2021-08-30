@@ -162,16 +162,21 @@ namespace HonkSharp.Functional
         {
             private LList<T>? curr;
             private readonly LList<T> list;
+
+            /// <summary></summary>
             public Enumerator(LList<T> list)
                 => (this.list, this.curr) = (list, null);
 
+            /// <summary></summary>
             public T Current =>
                 curr is null or LEmpty<T>
                 ? throw new InvalidOperationException() 
                 : curr.Head;
 
+            /// <summary></summary>
             public void Dispose() { }
 
+            /// <summary></summary>
             public bool MoveNext()
             {
                 if (curr is null)
@@ -181,6 +186,7 @@ namespace HonkSharp.Functional
                 return curr is not LEmpty<T>;
             }
 
+            /// <summary></summary>
             public void Reset()
                 => curr = null;
 
