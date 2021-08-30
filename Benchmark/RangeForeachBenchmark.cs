@@ -1,13 +1,14 @@
 ﻿using BenchmarkDotNet.Attributes;
 using HonkSharp.Fluency;
 using System.Linq;
+using static HonkSharp.Fluency.SeqsExtensions;
 
 namespace Benchmark
 {
     [DisassemblyDiagnoser(exportHtml: true, printSource: true)]
     public class RangeForeachBenchmark
     {
-        [Params(10, 100, 1000)]
+        [Params(100, 1000, 10000)]
         public int N { get; set; } = 10;
 
         public int Inc { get; set; } = 1;
@@ -53,6 +54,22 @@ namespace Benchmark
             while (enumerator.MoveNext())
                 a += enumerator.Current;
             return a;
+        }
+
+        [Benchmark]
+        public int LoopForeachHonkRangeRawWithEnumeratorHidden()
+        {
+            var n = N;
+            var enumerator = (0..(n - 1)).GetEnumerator();
+            return GoOverThing(enumerator);
+
+            static int GoOverThing(RangeEnumerator enumerator)
+            {
+                var a = 0;
+                while (enumerator.MoveNext())
+                    a += enumerator.Current;
+                return a;
+            }
         }
     }
 }
